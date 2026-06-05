@@ -1,0 +1,2722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teorías de la Comunicación - Documento Integral</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --accent-light: #ff6b6b;
+            --gold: #c9a227;
+            --text: #2d2d2d;
+            --text-light: #555;
+            --bg: #fafafa;
+            --card-bg: #ffffff;
+            --border: #e0e0e0;
+            --shadow: rgba(0,0,0,0.08);
+            --gradient-1: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-2: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+            --gradient-3: linear-gradient(135deg, #c9a227 0%, #f0d78c 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(233,69,96,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201,162,39,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: var(--accent-light);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        .hero-quote {
+            background: rgba(255,255,255,0.05);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem 2rem;
+            margin: 2rem auto;
+            max-width: 700px;
+            text-align: left;
+            border-radius: 0 8px 8px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-quote p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        .hero-quote cite {
+            display: block;
+            margin-top: 1rem;
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+
+        .nav-item {
+            padding: 1rem 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            position: relative;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(233,69,96,0.3);
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-3);
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+
+        /* ===== CARDS ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-2);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .card p, .card li {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .card ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== QUOTE BLOCKS ===== */
+        .quote-block {
+            background: var(--gradient-1);
+            color: #fff;
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-block::before {
+            content: '"';
+            font-family: 'Crimson Text', serif;
+            font-size: 8rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            color: rgba(255,255,255,0.1);
+            line-height: 1;
+        }
+
+        .quote-block p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-block cite {
+            display: block;
+            margin-top: 1.5rem;
+            color: var(--gold);
+            font-size: 0.95rem;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient-2);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 0;
+            text-align: right;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+            text-align: left;
+            padding-left: 3rem;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 4px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: var(--gradient-2);
+            color: #fff;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== THEORY BOX ===== */
+        .theory-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 4px solid var(--accent);
+            padding: 2rem 2.5rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .theory-box h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theory-box .badge {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* ===== MODEL DIAGRAMS ===== */
+        .model-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px var(--shadow);
+            text-align: center;
+        }
+
+        .model-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .model-node {
+            background: var(--gradient-1);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .model-arrow {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .model-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== AUTHOR CARDS ===== */
+        .author-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .author-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .author-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .author-card h5 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .author-card .years {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== FULL WIDTH SECTIONS ===== */
+        .full-width {
+            background: var(--gradient-1);
+            color: #fff;
+            padding: 5rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .full-width .section-title {
+            color: #fff;
+        }
+
+        .full-width .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .full-width .card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        .full-width .card h3, .full-width .card p, .full-width .card li {
+            color: #fff;
+        }
+
+        /* ===== TABLE OF CONTENTS ===== */
+        .toc {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .toc h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .toc-item {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .toc-item:hover {
+            transform: translateX(5px);
+            border-left-width: 6px;
+        }
+
+        .toc-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--primary);
+            color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 40px;
+                text-align: left;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            .timeline-dot { left: 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .nav-container { justify-content: flex-start; overflow-x: auto; }
+            .section { padding: 3rem 1rem; }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+        /* ===== HIGHLIGHT ===== */
+        .highlight {
+            background: linear-gradient(120deg, rgba(233,69,96,0.2) 0%, rgba(233,69,96,0.2) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+            padding: 0 4px;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: var(--gradient-3);
+            color: var(--primary);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.2rem;
+        }
+
+        /* ===== PARALLAX EFFECTS ===== */
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .parallax-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(26,26,46,0.85);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .parallax-content h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== TWO COLUMN LAYOUT ===== */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        /* ===== IMAGE PLACEHOLDER STYLES ===== */
+        .img-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 3rem;
+            margin: 1rem 0;
+        }
+
+        .img-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Documento Académico Integral</div>
+            <h1>Teorías de la <span>Comunicación</span></h1>
+            <p class="hero-subtitle">Un recorrido completo por las escuelas, modelos y pensadores que definieron el estudio de la comunicación de masas en el siglo XX</p>
+
+            <div class="hero-quote">
+                <p>"Si el poder no fuera más que represivo... ¿piensan realmente que se le obedecería? Lo que hace que el poder agarre, que se le acepte, es simplemente que no pesa solamente como una fuerza prohibitiva, sino que de hecho la atraviesa, produce cosas, induce placer, forma saber, produce discursos: es preciso considerarlo como una red productiva que atraviesa todo el cuerpo social más que como una instancia negativa que tiene como función el 'no'."</p>
+                <cite>— Michel Foucault, Microfísica del Poder (1978)</cite>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#introduccion" class="nav-item">Introducción</a>
+            <a href="#sociedad-masas" class="nav-item">Sociedad de Masas</a>
+            <a href="#funcionalismo" class="nav-item">Funcionalismo</a>
+            <a href="#modelos-comunicacion" class="nav-item">Modelos</a>
+            <a href="#agenda-setting" class="nav-item">Agenda Setting</a>
+            <a href="#usos-gratificaciones" class="nav-item">Usos y Gratificaciones</a>
+            <a href="#frankfurt" class="nav-item">Escuela de Frankfurt</a>
+            <a href="#benjamin" class="nav-item">Walter Benjamin</a>
+        </div>
+    </nav>
+
+    <!-- ===== TABLE OF CONTENTS ===== -->
+    <section class="section">
+        <div class="toc">
+            <h3>📚 Mapa de Contenidos</h3>
+            <ul class="toc-list">
+                <li class="toc-item"><a href="#introduccion"><span class="toc-num">1</span> Introducción: Poder y Comunicación</a></li>
+                <li class="toc-item"><a href="#sociedad-masas"><span class="toc-num">2</span> Consolidación de la Sociedad de Masas</a></li>
+                <li class="toc-item"><a href="#funcionalismo"><span class="toc-num">3</span> La Escuela Funcionalista</a></li>
+                <li class="toc-item"><a href="#aguja-hipodermica"><span class="toc-num">4</span> Teoría de la Aguja Hipodérmica</a></li>
+                <li class="toc-item"><a href="#shannon"><span class="toc-num">5</span> Modelo Matemático de Shannon</a></li>
+                <li class="toc-item"><a href="#lasswell"><span class="toc-num">6</span> Paradigma de Lasswell</a></li>
+                <li class="toc-item"><a href="#mcr"><span class="toc-num">7</span> Mass Communication Research</a></li>
+                <li class="toc-item"><a href="#dos-escalones"><span class="toc-num">8</span> Teoría de los Dos Escalones</a></li>
+                <li class="toc-item"><a href="#agenda-setting"><span class="toc-num">9</span> Agenda Setting</a></li>
+                <li class="toc-item"><a href="#usos-gratificaciones"><span class="toc-num">10</span> Usos y Gratificaciones</a></li>
+                <li class="toc-item"><a href="#frankfurt"><span class="toc-num">11</span> Escuela de Frankfurt</a></li>
+                <li class="toc-item"><a href="#benjamin"><span class="toc-num">12</span> Walter Benjamin</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 1: INTRODUCCIÓN ===== -->
+    <section id="introduccion" class="section">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <h2 class="section-title">Introducción: El Poder como Red Productiva</h2>
+            <p class="section-subtitle">Los fundamentos filosóficos y sociales que anteceden al análisis de la comunicación de masas</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Ahora bien, me parece que la noción de represión es totalmente inadecuada para dar cuenta de lo que hay justamente de productivo en el poder. Cuando se definen los efectos de poder por la represión se da una concepción puramente jurídica del poder; se identifica el poder a una ley que dice no; se privilegiará sobre todo la fuerza de la prohibición. Ahora bien, pienso que esta es una concepción negativa, estrecha, esquelética del poder que ha sido curiosamente..."</p>
+            <cite>Michel Foucault, Microfísica del Poder (1978)</cite>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3>La Condición Social del Ser Humano</h3>
+                <p>Desde su nacimiento, la presencia del otro, del congénere, se hace indispensable, ya sea por la dependencia biológica del recién nacido o por la incidencia del entorno afectivo en su desarrollo físico y emocional. Incluso nuestra subjetividad, la mirada que tenemos sobre nosotros mismos, se define en función del otro: <span class="highlight">somos en función de los que somos, pero también en función del opuesto, es decir, de lo que no somos</span>.</p>
+                <p>Esta dependencia material y simbólica, que en distinta medida y graduación prácticamente continuará de por vida, es la que caracteriza a la comunicación humana, ya que para hablar de comunicación tenemos que hablar de, por lo menos, dos actores.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🗣️</div>
+                <h3>El Proceso de Socialización</h3>
+                <p>Desde distintas instituciones o ámbitos se trata de reforzar, a lo largo de nuestra vida, el proceso de socialización, es decir, el aprendizaje de la cultura en la cual nos insertamos. Este proceso de enculturación tiene como plataforma <span class="highlight">el lenguaje, acompañado por los ritos, valores y costumbres de cada sociedad en particular</span>, por lo que nuestro acercamiento a la comunicación como manifestación humana estará ligado, inexorablemente, a la cultura.</p>
+                <p>De este modo, nuestro desarrollo como individuos va amalgamado, y es inseparable, de nuestro rol social. Somos individuos insertos en una comunidad, y como tales, encontramos en la comunicación interpersonal el medio de integración social por excelencia, y en la comunicación social un espacio de integración simbólica con el colectivo al cual pertenecemos.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚖️</div>
+                <h3>La Comunicación como Proceso Asimétrico</h3>
+                <p>A partir de la premisa marxista que afirma que <span class="highlight">el modo de producción dominante en una sociedad determina, entre otros factores, el modo de comunicación</span>, podemos acercarnos a la compleja trama de intereses y acciones que dan forma a la comunicación masiva.</p>
+                <p>Esta comunicación no deja de ser la expresión de los intereses de la clase social dominante y refleja en lo social la misma lógica que la comunicación interpersonal. Es así como el intercambio entre seres humanos, que supone la comunicación, casi nunca será en igualdad de condiciones, dado que las características socio-demográficas (sexo, edad, estatus y clase social) de cada persona serán fundamentales para determinar el tipo y la calidad del acto comunicativo. Por lo tanto, la comunicación humana es un proceso de carácter complejo, donde generalmente encontramos relaciones asimétricas.</p>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Concepto Clave</span> Los Medios como Andamiaje del Poder</h4>
+            <p>Básicamente las teorías que abordaremos tratan sobre la evolución histórica, las funciones sociales de control y de construcción de valores, además del rol económico que los mass media tuvieron durante el siglo XX. De la lectura del conjunto de las teorías se desprende, como conclusión, que <span class="highlight">los medios son parte fundamental del andamiaje del poder</span>, entendido como el conjunto de instituciones y sectores sociales, que asociados o segmentadamente, pueden incidir sobre el aparato estatal, los límites represivos del mismo, la construcción del relato que narra el pasado y la actualidad y, por último, sobre la subjetividad de los individuos.</p>
+        </div>
+    </section>
+
+    <!-- ===== ARISTÓTELES SECTION ===== -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: var(--gradient-3); color: var(--primary);">📜</div>
+            <h2 class="section-title">De los Primeros Pasos a la Actualidad</h2>
+            <p class="section-subtitle">La retórica clásica como antecedente fundacional</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">Antigüedad</span> Aristóteles (384-322 a.C.)</h4>
+                    <p>Es Aristóteles, autor de obras fundamentales en su tiempo, quien en el escrito titulado <strong>«Retórica»</strong> define a la persuasión como el objetivo de la comunicación, y detalla los tres elementos que la conforman:</p>
+                    <ul>
+                        <li><strong>Orador</strong> — quien emite el mensaje</li>
+                        <li><strong>Discurso</strong> — el mensaje en sí</li>
+                        <li><strong>Auditorio</strong> — quien recibe el mensaje</li>
+                    </ul>
+                </div>
+
+                <div class="quote-block" style="margin-top: 2rem;">
+                    <p>"Para Aristóteles la oratoria es el arte de la persuasión mediante la palabra hablada. El proceso persuasivo del discurso retórico se daba en un contexto político-social en el cual un ciudadano se dirigía a sus conciudadanos, un alma actuando sobre otras almas mediante el carácter, las pasiones, las emociones y las palabras elegantes bien escogidas y mejor combinadas. Según los griegos el arte de la política además de basarse en los argumentos, tiene que, prácticamente como una obligación, conmover al auditorio."</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">🏛️</div>
+                    <h3>La Antigua Grecia: Cuna de la Comunicación</h3>
+                    <p>Es así como, a la hora de remontarnos a las primeras reflexiones que el hombre dedica a la comunicación, tenemos que retrotraernos hasta la antigua Grecia, cuna de la filosofía y de la democracia occidental, y donde la sistematización del proceso de comunicación tal vez tiene su fundamentación en la búsqueda de optimizar el uso de la palabra como herramienta para ganar.</p>
+                    <p>La retórica es definida como <span class="highlight">"el arte de hablar"</span>, encaminada prioritariamente a persuadir al otro. La retórica nació y se perfeccionó en una sociedad como la Grecia antigua, de sistema político predominantemente oral, y para la cual el dominio de la palabra era una necesidad práctica.</p>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-icon">📖</div>
+                    <h3>El Lenguaje como Herramienta</h3>
+                    <p>El lenguaje se puede entender, desde el sentido instrumental que le otorgan las teorías funcionalistas, como una <span class="highlight">"herramienta que sirve para comunicar"</span> de manera arbitraria, consciente y subjetiva, reforzando el concepto unidireccional que prevalecía en ese momento, superado, como ya veremos, por los aportes de la Escuela de Palo Alto y de la semiología.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EVOLUCIÓN DEL TÉRMINO ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Evolución del Concepto de Comunicación</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">Edad Media</span>
+                    <h4>"Actuar en Común"</h4>
+                    <p>El término comunicación adquiere un sentido vinculado a lo comunitario, el compartir o poner en común. Se relaciona con la acción colectiva y la vida en comunidad.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">Modernidad</span>
+                    <h4>Instrumentalización Capitalista</h4>
+                    <p>Pasa de significar "actuar en común" a ser prácticamente un sinónimo de los objetos que, transformados en mercancía de la mano del capitalismo, pueden ser transportados. La comunicación, además del contenido u objetos, también se comienza a relacionar con el soporte: se empieza a hablar de sistemas, canales, vías o líneas de comunicación.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">Siglo XX</span>
+                    <h4>Concepción de Transmisión</h4>
+                    <p>Los trenes, el teléfono, los diarios, la radio y la televisión son medios de comunicación, es decir vehículos para pasar de un punto A al punto B. Esta idea de transmisión es la que prevalece tanto en la Teoría Funcionalista como en la Teoría Crítica, las cuales adoptan el esquema unidireccional en detrimento de la idea de proceso en el cual se comparte a partir de una acción recíproca.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Transición</span> De la Comunicación a la Información</h4>
+            <p>Estas primeras aproximaciones teóricas, entre las que podemos mencionar el modelo matemático y el paradigma de Lasswell, <span class="highlight">tienden a confundir con el mismo sentido los términos comunicación e información</span>. Desde esta perspectiva, los emisores o codificadores envían mensajes elaborados a partir de un código/lenguaje, que aparece como un instrumento neutro, mensajes que son recibidos y decodificados, con mayor o menor precisión, por los receptores en función del conocimiento del código/lenguaje ya mencionado.</p>
+        </div>
+    </section>
+
+    <!-- ===== SEMIOLOGÍA Y SIGNIFICACIÓN ===== -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🔮</div>
+            <h2 class="section-title">Teoría Culturológica y Semiología</h2>
+            <p class="section-subtitle">El giro hacia la producción de sentido</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <h3>Procesos de Significación</h3>
+                <p>Luego de décadas de evolución, la teoría culturológica y la teoría semiológica sostienen que los distintos lenguajes son en realidad una <span class="highlight">práctica comunicativa que produce procesos de significación</span>, es decir, espacios de interacción entre sujetos en los que se verifican procesos de producción de sentido. Los discursos son configuraciones témporo-espaciales de sentido, es la materialidad que asumen los lenguajes puestos a circular en distintas prácticas sociales.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Eliseo Verón: Indeterminación del Sentido</h3>
+                <p>El semiólogo argentino Eliseo Verón (1938-2014), al referirse al carácter lineal del modelo matemático, nos dice que el sentido, materializado en un discurso que circula de un emisor a un receptor, <span class="highlight">no se puede dar cuenta con un modelo determinista</span>. Un discurso, producido por un emisor determinado en una situación determinada, no produce jamás un efecto solo y uno solo.</p>
+                <p>Un discurso genera, al ser producido en un contexto social dado, lo que podemos llamar un <strong>campo de efectos de sentido posibles</strong>. Del análisis de las propiedades de un discurso no podemos deducir cuál es el efecto de sentido que será en definitiva actualizado en recepción.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎭</div>
+                <h3>Roland Barthes: La Lucha contra la Inocencia</h3>
+                <p>Para Barthes, todos los objetos que nos rodean actúan como signos, todo comunica: <span class="highlight">la ropa, un automóvil, un plato de comida, un gesto, una película, una canción, una fotografía en una publicidad, una casa, el título de un diario</span>. La clave está en poder leer entre líneas el sentido de cada uno de estos signos, lo que Barthes denomina connotación, y develar su carácter cultural a pesar de los esfuerzos puestos por las clases sociales dominantes en disfrazarlos de naturalidad.</p>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Todas estas lecturas son muy importantes en nuestra vida, implican demasiados valores sociales, morales, ideológicos, para que una reflexión sistemática pueda dejar de intentar tomarlos en consideración: esta reflexión es la que, por el momento al menos, llamamos semiología. ¿Ciencia de los mensajes sociales? ¿De las informaciones de segundo grado? ¿Captación de todo lo que es 'teatro' en el mundo, desde la pompa eclesiástica hasta el corte de pelo de los Beatles, desde el pijama de noche hasta las vicisitudes de la política internacional?"</p>
+            <cite>Roland Barthes – La cocina del sentido, Le Nouvel Observateur, 10 de Diciembre de 1964</cite>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Definición</span> Significación</h4>
+            <p>Entendemos por significación <span class="highlight">el proceso en el cual una cosa materialmente presente a la percepción del destinatario representa otra cosa a partir de reglas subyacentes</span>.</p>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 2: SOCIEDAD DE MASAS ===== -->
+    <section id="sociedad-masas" class="full-width">
+        <div class="section" style="max-width: 1100px; margin: 0 auto; padding: 0;">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Consolidación de la Sociedad de Masas</h2>
+                <p class="section-subtitle">El contexto histórico-social que dio origen a los mass media como institución fundamental</p>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="theory-box">
+            <h4><span class="badge">Axioma</span> "El mapa no es el territorio"</h4>
+            <p>Para comenzar el desarrollo de las distintas Teorías de la Comunicación de Masas, proponemos partir de un axioma muy difundido: <span class="highlight">«el mapa no es el territorio»</span>. Es decir, una teoría o modelo es una representación simplificada y reduccionista de un objeto dado, pero nunca es el objeto en sí. Sería imposible que un modelo contenga todos los elementos y posea las mismas características de lo representado, ya que en ese caso el mapa sería el territorio.</p>
+            <p>En resumen, podemos afirmar que un modelo es un esquema representativo de la realidad y, ante la complejidad de su interpretación, se nos presenta como una herramienta efectiva para la formulación de hipótesis o para la demostración de teorías.</p>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Condiciones para el Surgimiento de la Sociedad de Masas</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: var(--text-light); font-size: 1.1rem;">
+            Para abordar el concepto de «sociedad de masas», tenemos que situarnos en el contexto de la revolución industrial, su lógica migratoria (del campo a la ciudad) y las grandes aglomeraciones urbanas que genera. Es así como las sociedades de los países centrales (lo que hoy conocemos como primer mundo) comienzan a transformarse velozmente.
+        </p>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🏭</div>
+                <h3>Sistema Capitalista Industrial</h3>
+                <p>El sistema capitalista industrial se impone como modelo excluyente en lo económico. Grandes contingentes migratorios encuentran en las ciudades posibilidades de desarrollo, siendo millones los que pasan de la vida agraria a la urbana.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">👷</div>
+                <h3>División del Trabajo</h3>
+                <p>Se produce la división del trabajo (que también tendrá una versión internacional) y la especialización de la mano de obra: hay una mayor demanda de trabajadores y de calificación laboral, por lo que <span class="highlight">la educación se constituye como un bien simbólico, capaz de garantizar el ascenso social</span>.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3>Alfabetización Masiva</h3>
+                <p>La consolidación del sistema educativo moderno deriva en un aumento en el número de personas alfabetizadas. Este dato es importante para nuestro análisis, ya que los alfabetizados necesitan material de lectura, siendo esta necesidad uno de los motores del crecimiento acelerado de la circulación de periódicos, fenómeno que se denominaría como <strong>prensa de masas</strong>.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🏥</div>
+                <h3>Crecimiento Poblacional</h3>
+                <p>Las constantes mejoras de la medicina y el acceso a mejores condiciones de hábitat se traducen en el crecimiento sostenido de la población y el aumento de la expectativa de vida.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🏙️</div>
+                <h3>Urbanización</h3>
+                <p>La gente se desplaza desde el campo y los pequeños pueblos buscando mejores condiciones de vida: las grandes ciudades se transforman en un foco simbólico de la modernidad.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔬</div>
+                <h3>Innovación Tecnológica Permanente</h3>
+                <p>La tecnología constituye así, por un lado, la prueba de eficacia de la ciencia y, por otro, la fuerza motriz de la economía industrial.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Racionalización Social</h3>
+                <p>Para Max Weber, lo característico de la modernidad es <span class="highlight">«el desencantamiento del mundo»</span>, la sustitución de la «racionalidad sagrada» por la «racionalidad burocrática», la organización racional y burocrática de todas las esferas de la vida social simbolizadas en el control creciente del estado y el auge tecnológico.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚖️</div>
+                <h3>Orden Social Secular y Democrático</h3>
+                <p>Se consolida un orden social (secular y democrático) que tiene su fundamento en la figura del individuo, la igualdad ante la ley, la justicia social (salud y educación) y el trabajo reglamentado (acuerdos entre el estado, las asociaciones patronales y de trabajadores).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONCEPTO DE MASA ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">El Concepto de "Masa"</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Aclaración</span> ¿Qué es la masa?</h4>
+            <p>Es importante aclarar que el concepto «masa» no se refiere a lo «masivo», al abultado número de personas que, por ejemplo, podemos encontrar en una ciudad. En realidad, se pone el foco en los vínculos entre los individuos y la relación de estos con el orden social que los contiene. En general, los individuos enfrentan una situación de <span class="highlight">aislamiento psicológico y afectivo</span>, mientras que en las interacciones sociales prevalece la impersonalidad, en detrimento de los vínculos tradicionales. Así, la palabra «masa» se refiere más a una suma de personas que a un grupo social organizado.</p>
+        </div>
+
+        <div class="author-grid" style="margin-top: 3rem;">
+            <div class="author-card">
+                <h5>Gabriel Tarde</h5>
+                <div class="years">(1843-1904)</div>
+                <p>"Entonces nacerá espontáneamente este primer grado de asociación que llamamos muchedumbre. Por una serie de grados intermedios, nos elevamos de este agregado rudimentario, fugaz y amorfo, a esa muchedumbre organizada, jerarquizada, duradera y regular, que se puede llamar corporación, en el sentido más amplio de la palabra."</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--accent);"><em>Ensayos sociológicos, 2015</em></p>
+            </div>
+
+            <div class="author-card">
+                <h5>Sigmund Freud</h5>
+                <div class="years">(1856-1939)</div>
+                <p>"La masa se nos muestra, pues, como una resurrección de la horda primitiva. Así como el hombre primitivo sobrevive virtualmente en cada individuo, también toda masa humana puede reconstruir la horda primitiva."</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--accent);"><em>Psicología de las Masas y Análisis del Yo, 1921</em></p>
+            </div>
+
+            <div class="author-card">
+                <h5>José Ortega y Gasset</h5>
+                <div class="years">(1883-1955)</div>
+                <p>"La muchedumbre, de pronto, se ha hecho visible, se ha instalado en los lugares preferentes de la sociedad. Antes, si existía, pasaba inadvertida, ocupaba el fondo del escenario social; ahora se ha adelantado a las baterías, es ella y el personaje. Ya no hay protagonistas: solo una muchedumbre."</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--accent);"><em>La rebelión de las masas, 1929</em></p>
+            </div>
+        </div>
+
+        <div class="quote-block" style="margin-top: 3rem;">
+            <p>"El concepto de muchedumbre es cuantitativo visual. Traduzcámoslo, sin alterarlo, a la terminología sociológica. Entonces hallamos la idea de la masa social. La sociedad es siempre una unidad dinámica de dos factores: minorías y masas. Las minorías son individuos o grupos de individuos especialmente cualificados. La masa es el conjunto de personas no especialmente cualificadas. No se entienda, pues, por masa solo ni principalmente las 'masas obreras'. Masa es 'el hombre medio'. De este modo se convierte lo que era meramente cantidad -la muchedumbre- en una determinación cualitativa: es la cualidad común, es el mostrenco social, es el hombre en cuanto no se diferencia de otros hombres, sino que repite en sí un tipo genérico."</p>
+            <cite>José Ortega y Gasset, La rebelión de las masas (1929)</cite>
+        </div>
+    </section>
+
+    <!-- ===== TRES PERSPECTIVAS ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Tres Perspectivas de Análisis</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <h3>Transformaciones Económicas y Sociales</h3>
+                <p>La configuración de grandes urbes, la división del trabajo, la concentración de capital, la tecnificación y la burocratización. Estas transformaciones serían el fundamento de las <span class="highlight">teorías de la alienación</span>.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚔️</div>
+                <h3>Convulsiones Políticas</h3>
+                <p>Como las revoluciones nacionalistas, los procesos de unificación y la revolución soviética. En estos acontecimientos históricos, la participación masiva de trabajadores y campesinos se presentaba como decisiva.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📺</div>
+                <h3>Nuevos Medios de Comunicación</h3>
+                <p>Como las exposiciones universales, las grandes ferias internacionales, la prensa de masas, el cine y la radio. Estos medios prefiguraban un nuevo tipo de público, propio de las grandes urbes.</p>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Concepto</span> Cultura de Masas</h4>
+            <p>Vamos a definir a la cultura de masas como <span class="highlight">el producto de la estandarización en la forma de pensar y de sentir promovida desde los mass media y que origina, a su vez, prácticas de consumo, de sensibilidad y de experiencias compartidas que refuerzan la identidad de una comunidad</span>.</p>
+        </div>
+
+        <div class="quote-block">
+            <p>"El carácter general de este cambio queda bien expresado por las palabras 'ampliación' y 'animación'. Los contactos sociales quedan ampliados en el espacio y apresurados en el tiempo (...). El individuo queda ampliado al entrar en relación con una vida más grande y más variada, y se le mantiene excitado, a veces hasta el exceso, por la multitud de sugerencias para el cambio que esa vida le ofrece."</p>
+            <cite>Charles Horton Cooley, Social Organization (1909)</cite>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 3: FUNCIONALISMO ===== -->
+    <section id="funcionalismo" class="full-width">
+        <div class="section" style="max-width: 1100px; margin: 0 auto; padding: 0;">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">La Escuela Funcionalista de la Comunicación</h2>
+                <p class="section-subtitle">La sociedad como organismo y los mass media como garantes del equilibrio social</p>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="theory-box">
+            <h4><span class="badge">Definición</span> Funcionalismo</h4>
+            <p>El funcionalismo es una corriente teórica, enmarcada en la sociología y la antropología social, que se origina hacia finales del siglo XIX en Europa pero que se consolida y se desarrolla en los EEUU entrado el siglo XX. Parte de la idea de que <span class="highlight">todos los elementos de una sociedad poseen alguna función significativa en ella, y que juegan un rol en mantener la estabilidad o el equilibrio de la misma</span>.</p>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Fundamentos Teóricos</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📐</div>
+                <h3>Émile Durkheim</h3>
+                <p>Plantea dos tesis fundamentales en «Las reglas del método sociológico» para llevar a cabo el método funcionalista:</p>
+                <ul>
+                    <li><strong>Objeto específico:</strong> La sociología sostiene un único objeto de análisis en base a los hechos sociales, a diferencia de la filosofía o la psicología que analizan múltiples variables.</li>
+                    <li><strong>Método científico:</strong> La sociología persigue el pensamiento objetivo en base a la investigación empírica y pruebas de razonamiento, a fin de evitar prejuicios o puntos de vista subjetivos.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🌍</div>
+                <h3>Bronislaw Malinowski</h3>
+                <p>El etnógrafo polaco para quien las culturas se presentan como un todo integrado, funcional y coherente. Por lo tanto, <span class="highlight">cada elemento de la misma solo puede analizarse considerando a los demás</span>. Este autor estudia la cultura, los valores, prácticas sociales y las instituciones en las que estos se generan y se desarrollan, en función de cómo se organizan para satisfacer las necesidades de un grupo humano.</p>
+                <p>Para esta corriente, las instituciones sociales son medios colectivamente desarrollados para satisfacer necesidades biológicas y culturales, es decir, cumplen una función social.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Auguste Comte</h3>
+                <p>El concepto de sociedad como un organismo no fue original de Comte, aunque este lo convirtió en postulado fundamental. La importancia de esta idea estriba en que de allí derivan importantes consecuencias. En términos simples, <span class="highlight">la sociedad puede ser entendida como un tipo particular de organismo: como un organismo colectivo</span>.</p>
+                <p>Para Comte, la sociedad era ya un organismo por sí sola. Vio que tenía una estructura, que sus partes especializadas funcionaban en un conjunto, que el conjunto era más que la suma de sus partes y que sobrellevaba cambios en su evolución.</p>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"El funcionalismo compara a la sociedad con un sistema natural, un organismo integral e interrelacionado, en el que si se afecta una parte, todo el organismo se perturba. Por ese motivo, un objetivo primordial es la búsqueda del equilibrio, siendo los mass media una de las instituciones con mayor responsabilidad en la consolidación de la estabilidad social."</p>
+            <cite>Melvin DeFleur y Sandra Ball-Rokeach, Teorías de la comunicación de masas (1986)</cite>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Ejes</span> Cuatro Ejes de Estabilidad Social</h4>
+            <p>Dicha estabilidad se mide a partir de cuatro ejes:</p>
+            <ul>
+                <li><strong>La adaptación al ambiente</strong></li>
+                <li><strong>La conservación del modelo y el control de las tensiones</strong></li>
+                <li><strong>La persecución de una finalidad</strong></li>
+                <li><strong>La integración de los ciudadanos mediante distintas clases sociales</strong></li>
+            </ul>
+            <p style="margin-top: 1rem;">Todas las sociedades disponen de mecanismos propios capaces de regular los conflictos a partir de normas que determinan el código de conducta de los individuos. Estas reglas varían en función de los medios existentes en cada momento histórico y el grado de su cumplimiento es lo que garantiza el equilibrio social.</p>
+        </div>
+    </section>
+
+    <!-- ===== AGUJA HIPODÉRMICA ===== -->
+    <section id="aguja-hipodermica" class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);">💉</div>
+            <h2 class="section-title">La Teoría de la Aguja Hipodérmica o Bala Mágica</h2>
+            <p class="section-subtitle">Los efectos directos y la omnipotencia de los medios (1920-1950)</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">Postulado</span> La Inyección Mediática</h4>
+                    <p>La teoría de la aguja hipodérmica tiene como principal postulado la idea de que <span class="highlight">los mass media «inyectan» una información con un contenido que se da por cierto y verídico y no requiere ser verificado</span> (hipo = por debajo y dermis = piel).</p>
+                </div>
+
+                <div class="theory-box" style="margin-top: 2rem;">
+                    <h4><span class="badge">Base</span> Conductismo y Estímulo-Respuesta</h4>
+                    <p>El conductismo explica la conducta humana a partir del principio estímulo-respuesta, que a nivel individual afirma que las personas responden a los estímulos externos en una clara relación causa-efecto.</p>
+                    <p style="margin-top: 1rem;">En este momento histórico, las masas se entienden como la suma de átomos individuales, solitarios y uniformes, que forman la muchedumbre como resultado de la agregación homogénea de personas.</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Características del Modelo</h3>
+                    <p><strong>Cándido Monzón resume en cuatro características el modelo de los efectos directos:</strong></p>
+                    <ul>
+                        <li>La sociedad se compone de <span class="highlight">individuos aislados y dispersos</span>, sin grupos intermedios que favorezcan la interacción y la integración.</li>
+                        <li>Los estímulos de la comunicación de masas son recibidos de igual forma por todos los receptores. La respuesta a tales estímulos se considera igualmente uniforme. Se considera que la opinión pública puede ser moldeada a antojo de un buen propagandista.</li>
+                        <li>Las metáforas utilizadas en la investigación de esa época son las de <span class="highlight">la bala mágica o la aguja hipodérmica</span> para ilustrar el poder que los medios tienen. La respuesta a un pinchazo de una aguja o al impacto de un balazo resulta bastante uniforme en todos los miembros.</li>
+                        <li>El esquema utilizado de estímulo-respuesta denota un claro automatismo en el proceso de comunicación de masas protagonizado por unos medios siempre poderosos y una audiencia siempre pasiva.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-container">
+            <h3 style="font-family: 'Crimson Text', serif; color: var(--primary); margin-bottom: 2rem;">Esquema del Modelo Estímulo-Respuesta</h3>
+            <div class="model-flow">
+                <div>
+                    <div class="model-node">EMISOR</div>
+                    <div class="model-label">transmite el mensaje</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node" style="background: var(--gradient-2);">ESTÍMULO</div>
+                    <div class="model-label">causa</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node" style="background: var(--gradient-3); color: var(--primary);">RESPUESTA</div>
+                    <div class="model-label">efecto</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node">RECEPTOR</div>
+                    <div class="model-label">recibe pasivamente</div>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                <div class="model-flow">
+                    <div>
+                        <div class="model-node" style="background: var(--secondary);">INTENCIÓN</div>
+                        <div class="model-label">del emisor</div>
+                    </div>
+                    <div class="model-arrow">≡</div>
+                    <div>
+                        <div class="model-node" style="background: var(--secondary);">CONDUCTA</div>
+                        <div class="model-label">del receptor (coincide)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Desde la cuna hasta la tumba, desde que se levanta hasta que se acuesta, el individuo de hoy se halla rodeado por una interminable red de signos, mediante los cuales procuran los demás adelantar sus propios objetivos. Se le indica lo que ha de creer, lo que debe aprobar o desaprobar, lo que debe hacer o evitar. Si no se pone en guardia, se transforma en un verdadero robot manipulado por signos, pasivo en sus creencias, sus valoraciones, sus actividades."</p>
+            <cite>Charles Morris, Signos, Lenguaje y Conducta (1946)</cite>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Contexto Histórico</span> La Guerra de los Mundos (1938)</h4>
+            <p>El 30 de octubre de 1938, en la cadena de radio CBS se transmite una nueva entrega del ciclo «Teatro Mercurio en las ondas» dirigido por Orson Welles. En un extraño fenómeno de zapping masivo, muchos oyentes se quedaron enganchados en lo que creyeron una transmisión real de una invasión marciana.</p>
+            <p style="margin-top: 1rem;">Este efecto se logró, en parte, por la elección del formato (programa musical y de anuncios comerciales interrumpido por boletines informativos que narraban el aterrizaje de los marcianos en Nueva Jersey) y por la efectividad del tono de los actores y la calidad de los efectos especiales. Para la historia este episodio será recordado por <span class="highlight">la capacidad de la radio, extendida genéricamente a todos los medios, de generar el efecto de realidad a partir de formatos noticiosos</span>, independientemente de la veracidad del contenido.</p>
+        </div>
+    </section>
+
+    <!-- ===== SHANNON Y WEAVER ===== -->
+    <section id="shannon" class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);">📡</div>
+            <h2 class="section-title">La Teoría Matemática de Shannon y el Paradigma de Lasswell</h2>
+            <p class="section-subtitle">Los modelos lineales que dominaron el estudio de la comunicación durante décadas</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">1948</span> Claude Elwood Shannon (1916-2001)</h4>
+                    <p>En 1948, Claude Elwood Shannon y el sociólogo Warren Weaver (1894-1978) publican <strong>"A Mathematical Theory of Communication"</strong> (Una Teoría Matemática de la Comunicación). En este trabajo estudian las condiciones técnicas en la transmisión de mensajes, con la pretensión de lograr un modelo que explique científicamente la comunicación.</p>
+                    <p style="margin-top: 1rem;">El desafío que Shannon se había impuesto era encontrar la manera de comunicar la mayor cantidad de mensajes con la menor interferencia y al menor costo posible. Esta impronta economicista se explica desde el contexto en el cual desarrolla su trabajo: ingeniero electrónico y matemático, durante el período en el cual formula su teoría, trabaja para Bell Telephone Laboratories, de la compañía de teléfonos del mismo nombre en los Estados Unidos.</p>
+                </div>
+
+                <div class="theory-box" style="margin-top: 2rem;">
+                    <h4><span class="badge">Diferencia Clave</span> Comunicación Cibernética vs. Social</h4>
+                    <p>La investigación de Shannon no está centrada en la comunicación humana, sino en la comunicación electrónica, siendo un aporte de importancia fundamental para el desarrollo de la cibernética, la digitalización y la revolución de las TICs.</p>
+                    <ul style="margin-top: 1rem;">
+                        <li><strong>Comunicación cibernética:</strong> se entiende como el intercambio de información entre sistemas o subsistemas que estén en condiciones de recibir información, almacenarla y, de ser necesario, retransmitirla.</li>
+                        <li><strong>Comunicación social:</strong> se define como el intercambio de información entre personas o grupos de personas a la que se le asigna un sentido conforme a una serie de factores: la relación entre las personas en el proceso de comunicación, sus competencias comunicativas y el contexto en el que interactúan.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">⚠️</div>
+                    <h3>El Malentendido Histórico</h3>
+                    <p>A pesar de estar relacionado con los problemas técnicos que planteaba la comunicación electrónica, investigadores de distintas corrientes (desde la lingüística estructural hasta la sociología funcionalista) trasladan el modelo de Shannon a las ciencias humanas. Durante varias décadas, este modelo es considerado como <span class="highlight">el modelo de comunicación</span>. Este es el origen de un malentendido que retrasaría durante varios años el avance de la teoría de la comunicación humana.</p>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-icon">📊</div>
+                    <h3>Aportes Significativos</h3>
+                    <p>Un aporte significativo de la Teoría Matemática es la posibilidad de medir cualquier fuente de información (teléfono, telégrafo eléctrico, radio, las cámaras de televisión, una conversación cara a cara, etc.) y la certeza de que los canales de comunicación tienen una unidad de medida similar, determinando la velocidad máxima de transferencia o capacidad del canal.</p>
+                    <p style="margin-top: 1rem;">Otra ventaja importante de esta nueva etapa surge del siguiente axioma: <span class="highlight">todo lo que se puede medir se puede mejorar</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-container">
+            <h3 style="font-family: 'Crimson Text', serif; color: var(--primary); margin-bottom: 2rem;">Modelo de Comunicación de Shannon</h3>
+            <div class="model-flow">
+                <div>
+                    <div class="model-node">FUENTE DE INFORMACIÓN</div>
+                    <div class="model-label">produce mensaje</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node" style="background: var(--gradient-2);">TRANSMISOR</div>
+                    <div class="model-label">codifica señal</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node" style="background: var(--gradient-3); color: var(--primary);">CANAL</div>
+                    <div class="model-label">+ RUIDO</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node" style="background: var(--gradient-2);">RECEPTOR</div>
+                    <div class="model-label">decodifica</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node">DESTINO</div>
+                    <div class="model-label">recibe mensaje</div>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <span class="concept-tag">Mensaje</span>
+                    <p class="model-label">La palabra o señal utilizada</p>
+                </div>
+                <div style="text-align: center;">
+                    <span class="concept-tag">Señal Emitida</span>
+                    <p class="model-label">Modulación física</p>
+                </div>
+                <div style="text-align: center;">
+                    <span class="concept-tag">Ruido</span>
+                    <p class="model-label">Interferencias aleatorias</p>
+                </div>
+                <div style="text-align: center;">
+                    <span class="concept-tag">Señal Recibida</span>
+                    <p class="model-label">Con posible distorsión</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Crítica</span> Limitaciones del Modelo</h4>
+            <p>Los modelos de comunicación basados en la teoría matemática de la información <span class="highlight">ignoran a los individuos reales</span>. La comunicación humana es un proceso biunívoco y de influencia mutua, situación no reflejada por este modelo. A pesar de las críticas, por lo limitado del modelo al centrarse en el proceso de transmisión, es innegable su influencia en diversas teorías de la comunicación y en distintas disciplinas que por diversos motivos tienen que realizar un acercamiento a la problemática comunicacional.</p>
+        </div>
+    </section>
+
+    <!-- ===== FEEDBACK ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">El Concepto de Feedback o Retroalimentación</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <h3>Norbert Wiener (1894-1964)</h3>
+                <p>Matemático y ex profesor de Shannon, trabaja la noción de feedback en <strong>Cybernetics or Control and Communication in the Animal and Machine</strong> (Cibernética, Control y Comunicación en el Animal y la Máquina) publicado en 1948.</p>
+                <p style="margin-top: 1rem;">Este concepto, tomado de la ingeniería, influye en los estudios de la conducta humana y social para incorporar la idea de <span class="highlight">proceso o carácter circular</span> al estudio de la comunicación, diferenciándose del esquema lineal de Shannon.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Definición Comunicacional</h3>
+                <p>En términos comunicacionales, el feedback o retroalimentación se refiere a la circulación y el uso de información relativa al sistema controlado y al medio externo con el cual interactúa. En particular, es la información referente a las posibles desviaciones que se detectan en el cumplimiento de las finalidades del sistema y que permite a las unidades de control emitir órdenes correctivas de las discrepancias observadas.</p>
+                <p style="margin-top: 1rem;">Podríamos hablar de un <span class="highlight">proceso circular</span>, ya que es información que llega al final del proceso de comunicación y provoca una reacción en el receptor, al mismo tiempo que esta reacción también influye en el emisor.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LASSWELL ===== -->
+    <section id="lasswell" class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">📋</div>
+            <h2 class="section-title">Harold Lasswell y su Paradigma de la Comunicación</h2>
+            <p class="section-subtitle">La fórmula que definió el estudio de la comunicación de masas</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">1948</span> Harold Dwight Lasswell (1902-1978)</h4>
+                    <p>Uno de los principales investigadores de la Mass Communication Research, afirma que durante la Primera Guerra Mundial la propaganda había tenido un papel decisivo, tanto en las poblaciones en conflicto como en la moral de los ejércitos. En 1927 publica <strong>Propaganda Techniques in the World War</strong> (Técnicas de Propaganda en la Guerra Mundial), donde analiza esta problemática y esboza la Teoría de la Aguja Hipodérmica.</p>
+                    <p style="margin-top: 1rem;">La teoría de Lasswell sostiene una visión instrumental de la comunicación y una confianza ciega en la omnipotencia de los medios. Esta perspectiva, fuertemente influenciada por la psicología conductista, intenta aislar y conocer los estímulos que generan determinadas respuestas específicas en los individuos.</p>
+                </div>
+
+                <div class="quote-block" style="margin-top: 2rem;">
+                    <p>"Pero cuando se han descontado todas las objeciones y cuando todas las estimaciones extravagantes han sido reducidas a lo esencial, persiste el hecho de que la propaganda es uno de los instrumentos más poderosos del mundo moderno. Ha llegado a su actual prominencia como respuesta a un complejo conjunto de circunstancias modificadas que han alterado la naturaleza de la sociedad... En la Gran Sociedad ya no es posible fusionar las peculiaridades de los individuos en el gran horno de la danza guerrera; un instrumento más nuevo y más sutil habrá de soldar a miles y aun a millones de seres humanos en una amalgama de odio, de voluntad y de esperanza."</p>
+                    <cite>Harold D. Lasswell, Propaganda Technique in the World War (1927)</cite>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Las Tres Funciones de la Comunicación</h3>
+                    <p>En 1948, Lasswell publica el célebre artículo <strong>«Estructura y función de la comunicación en la sociedad»</strong>. Preocupado por las amenazas políticas que puedan alterar el orden social (el fascismo, el comunismo, la protesta social), estudia la eficacia en la comunicación con el propósito de asegurar el control social. Según su teoría, la comunicación cumple tres funciones principales en la sociedad:</p>
+                    <ul style="margin-top: 1rem;">
+                        <li><strong>La vigilancia del entorno:</strong> llevada a cabo por los agentes de seguridad, permiten relevar las amenazas.</li>
+                        <li><strong>La puesta en relación entre los sectores de la sociedad:</strong> por parte del periodismo y los líderes de opinión.</li>
+                        <li><strong>La transmisión de la herencia social:</strong> por parte de la escuela y la familia.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-container" style="background: var(--gradient-1); color: #fff;">
+            <h3 style="font-family: 'Crimson Text', serif; color: #fff; margin-bottom: 2rem;">La Fórmula de Lasswell (1948)</h3>
+            <div style="font-size: clamp(1.2rem, 3vw, 2rem); font-weight: 700; letter-spacing: 2px; margin-bottom: 3rem;">
+                ¿QUIÉN? → ¿QUÉ? → ¿CÓMO? → ¿A QUIÉN? → ¿EFECTO?
+            </div>
+            <div class="model-flow" style="flex-wrap: wrap;">
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿QUIÉN?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Emisor<br>Análisis de control</div>
+                </div>
+                <div class="model-arrow" style="color: var(--gold);">→</div>
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿QUÉ?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Mensaje<br>Análisis de contenido</div>
+                </div>
+                <div class="model-arrow" style="color: var(--gold);">→</div>
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿CÓMO?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Canal<br>Análisis del medio</div>
+                </div>
+                <div class="model-arrow" style="color: var(--gold);">→</div>
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿A QUIÉN?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Receptor<br>Análisis de audiencia</div>
+                </div>
+                <div class="model-arrow" style="color: var(--gold);">→</div>
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿EFECTO?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Efecto producido<br>Análisis del efecto</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Evolución</span> De Aristóteles a Lasswell</h4>
+            <p>Lasswell, quien estudió retórica en Berlín en 1925, <span class="highlight">modificó la proposición original de Aristóteles</span> (quién/orador, dice qué/discurso y a quién/auditorio), añadiendo dos nuevos elementos (en qué canal y con qué efectos), dando lugar a un modelo mecanicista de la comunicación que obtuvo una rápida aceptación y fue el que predominó por mucho tiempo.</p>
+            <p style="margin-top: 1rem;">El Paradigma de Lasswell, en síntesis, representa un <span class="highlight">modelo de comunicación unidireccional, propio de la comunicación masiva</span>, donde la relación entre el emisor y el receptor es asimétrica, ya que el primero envía el mensaje y el segundo lo recibe de manera pasiva.</p>
+        </div>
+    </section>
+
+    
+    <!-- ===== MODELOS DE COMUNICACIÓN ===== -->
+    <section id="modelos-comunicacion" class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #0f3460 0%, #667eea 100%);">🔧</div>
+            <h2 class="section-title">Modelos de Comunicación: Una Visión Integrada</h2>
+            <p class="section-subtitle">De lo lineal a lo circular: la evolución de los esquemas teóricos</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Evolución</span> Del Modelo Lineal al Modelo Circular</h4>
+            <p>Los modelos de comunicación desarrollados durante el siglo XX reflejan una transformación fundamental en la comprensión del proceso comunicativo. Desde los primeros esquemas unidireccionales, herederos de la tradición conductista y de la ingeniería de telecomunicaciones, hasta los modelos que incorporan la retroalimentación y la interpretación activa del receptor, cada propuesta teórica responde a un contexto histórico y a una concepción particular de la relación entre medios, mensajes y audiencias.</p>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Modelo Matemático de Shannon y Weaver (1948)</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="model-container">
+            <h3 style="font-family: 'Crimson Text', serif; color: var(--primary); margin-bottom: 2rem;">Esquema del Proceso de Transmisión</h3>
+            <div class="model-flow">
+                <div>
+                    <div class="model-node">FUENTE DE INFORMACIÓN</div>
+                    <div class="model-label">produce mensaje</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node" style="background: var(--gradient-2);">TRANSMISOR</div>
+                    <div class="model-label">codifica señal</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node" style="background: var(--gradient-3); color: var(--primary);">CANAL</div>
+                    <div class="model-label">+ RUIDO</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node" style="background: var(--gradient-2);">RECEPTOR</div>
+                    <div class="model-label">decodifica</div>
+                </div>
+                <div class="model-arrow">→</div>
+                <div>
+                    <div class="model-node">DESTINO</div>
+                    <div class="model-label">recibe mensaje</div>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <span class="concept-tag">Mensaje</span>
+                    <p class="model-label">La palabra o señal utilizada</p>
+                </div>
+                <div style="text-align: center;">
+                    <span class="concept-tag">Señal Emitida</span>
+                    <p class="model-label">Modulación física</p>
+                </div>
+                <div style="text-align: center;">
+                    <span class="concept-tag">Ruido</span>
+                    <p class="model-label">Interferencias aleatorias</p>
+                </div>
+                <div style="text-align: center;">
+                    <span class="concept-tag">Señal Recibida</span>
+                    <p class="model-label">Con posible distorsión</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📡</div>
+                <h3>Origen e Inspiración</h3>
+                <p>Claude Shannon desarrolló este modelo mientras trabajaba para Bell Telephone Laboratories. Su objetivo era encontrar la manera de comunicar la mayor cantidad de mensajes con la menor interferencia y al menor costo posible. Esta impronta economicista explica por qué el modelo ignora los aspectos simbólicos y culturales de la comunicación humana.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚠️</div>
+                <h3>Limitaciones Críticas</h3>
+                <p>Los modelos basados en la teoría matemática de la información <span class="highlight">ignoran a los individuos reales</span>. La comunicación humana es un proceso biunívoco y de influencia mutua, situación no reflejada por este modelo. A pesar de las críticas, su influencia en diversas teorías de la comunicación es innegable.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>Aporte Fundamental</h3>
+                <p>Un aporte significativo es la posibilidad de medir cualquier fuente de información y la certeza de que los canales de comunicación tienen una unidad de medida similar, determinando la velocidad máxima de transferencia o capacidad del canal. El axioma rector: <span class="highlight">todo lo que se puede medir se puede mejorar</span>.</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Paradigma de Lasswell (1948)</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="model-container" style="background: var(--gradient-1); color: #fff;">
+            <h3 style="font-family: 'Crimson Text', serif; color: #fff; margin-bottom: 2rem;">La Fórmula de Lasswell</h3>
+            <div style="font-size: clamp(1.2rem, 3vw, 2rem); font-weight: 700; letter-spacing: 2px; margin-bottom: 3rem;">
+                ¿QUIÉN? → ¿QUÉ? → ¿CÓMO? → ¿A QUIÉN? → ¿EFECTO?
+            </div>
+            <div class="model-flow" style="flex-wrap: wrap;">
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿QUIÉN?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Emisor<br>Análisis de control</div>
+                </div>
+                <div class="model-arrow" style="color: var(--gold);">→</div>
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿QUÉ?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Mensaje<br>Análisis de contenido</div>
+                </div>
+                <div class="model-arrow" style="color: var(--gold);">→</div>
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿CÓMO?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Canal<br>Análisis del medio</div>
+                </div>
+                <div class="model-arrow" style="color: var(--gold);">→</div>
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿A QUIÉN?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Receptor<br>Análisis de audiencia</div>
+                </div>
+                <div class="model-arrow" style="color: var(--gold);">→</div>
+                <div>
+                    <div class="model-node" style="background: rgba(255,255,255,0.2); border: 2px solid #fff;">¿EFECTO?</div>
+                    <div class="model-label" style="color: rgba(255,255,255,0.8);">Efecto producido<br>Análisis del efecto</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Evolución desde Aristóteles</h3>
+                <p>Lasswell, quien estudió retórica en Berlín en 1925, modificó la proposición original de Aristóteles (quién/orador, dice qué/discurso y a quién/auditorio), añadiendo dos nuevos elementos (en qué canal y con qué efectos), dando lugar a un modelo mecanicista de la comunicación que obtuvo una rápida aceptación y fue el que predominó por mucho tiempo.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Visión Instrumental</h3>
+                <p>La teoría de Lasswell sostiene una visión instrumental de la comunicación y una confianza ciega en la omnipotencia de los medios. Esta perspectiva, fuertemente influenciada por la psicología conductista, intenta aislar y conocer los estímulos que generan determinadas respuestas específicas en los individuos.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Funciones de la Comunicación</h3>
+                <p>Según Lasswell, la comunicación cumple tres funciones principales: <strong>vigilancia del entorno</strong> (agentes de seguridad), <strong>puesta en relación entre sectores</strong> (periodismo y líderes de opinión), y <strong>transmisión de la herencia social</strong> (escuela y familia).</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Modelo de Wilbur Schramm (1954)</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="model-container">
+            <h3 style="font-family: 'Crimson Text', serif; color: var(--primary); margin-bottom: 2rem;">La "Tuba" de Schramm: De la Emisión a la Reinterpretación</h3>
+            <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem; margin: 2rem 0;">
+                <div style="text-align: center;">
+                    <div style="background: var(--gradient-1); color: #fff; padding: 1.5rem; border-radius: 50%; width: 120px; height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;">
+                        <span style="font-size: 0.8rem;">ORGANIZACIÓN</span>
+                        <span style="font-size: 0.7rem; opacity: 0.8;">Codificador</span>
+                        <span style="font-size: 0.7rem; opacity: 0.8;">Intérprete</span>
+                        <span style="font-size: 0.7rem; opacity: 0.8;">Decodificador</span>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <span style="font-size: 2rem; color: var(--accent);">→</span>
+                    <span style="font-size: 0.8rem; color: var(--text-light);">Muchos mensajes idénticos</span>
+                </div>
+                <div style="text-align: center;">
+                    <div style="background: var(--gradient-2); color: #fff; padding: 1.5rem; border-radius: 50%; width: 120px; height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;">
+                        <span style="font-size: 0.8rem;">AUDIENCIA MASIVA</span>
+                        <span style="font-size: 0.7rem; opacity: 0.8;">Cada receptor</span>
+                        <span style="font-size: 0.7rem; opacity: 0.8;">decodifica, interpreta</span>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+                <div style="text-align: center; max-width: 200px;">
+                    <span class="concept-tag">Feed-back</span>
+                    <p class="model-label">Retorno a la organización</p>
+                </div>
+                <div style="text-align: center; max-width: 200px;">
+                    <span class="concept-tag">Reinterpretación grupal</span>
+                    <p class="model-label">Cada grupo reinterpreta el mensaje</p>
+                </div>
+                <div style="text-align: center; max-width: 200px;">
+                    <span class="concept-tag">Decodificación individual</span>
+                    <p class="model-label">Cada receptor decodifica e interpreta</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🏢</div>
+                <h3>Los Media como Sujetos Comunicadores</h3>
+                <p>Para Schramm, los mass media son sujetos comunicadores que, al igual que las personas, son <span class="highlight">decodificadores, intérpretes y codificadores</span>. Los media son receptores de eventos que codifican e interpretan de acuerdo con las lógicas productivas del periodismo.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">✅</div>
+                <h3>Condiciones para el Éxito</h3>
+                <ul>
+                    <li>Obtener la <span class="highlight">atención del destinatario</span></li>
+                    <li>Emplear signos de <span class="highlight">experiencia común</span></li>
+                    <li>Despertar necesidades de la personalidad</li>
+                    <li>Sugerir maneras <span class="highlight">adecuadas al grupo</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <h3>Integración de Aportes</h3>
+                <p>Schramm sistematiza los aportes de Lazarsfeld, incorporando la figura del líder de opinión y la comunicación interpersonal como mediadores entre los mass media y la audiencia masiva. Su modelo representa una evolución hacia la comprensión del proceso comunicativo como circular y mediado.</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Comparativa: Evolución de los Modelos</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px var(--shadow);">
+                <thead>
+                    <tr style="background: var(--gradient-1); color: #fff;">
+                        <th style="padding: 1.2rem; text-align: left; font-family: 'Crimson Text', serif; font-size: 1.1rem;">Característica</th>
+                        <th style="padding: 1.2rem; text-align: center; font-family: 'Crimson Text', serif; font-size: 1.1rem;">Shannon (1948)</th>
+                        <th style="padding: 1.2rem; text-align: center; font-family: 'Crimson Text', serif; font-size: 1.1rem;">Lasswell (1948)</th>
+                        <th style="padding: 1.2rem; text-align: center; font-family: 'Crimson Text', serif; font-size: 1.1rem;">Schramm (1954)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 1rem; font-weight: 600;">Dirección</td>
+                        <td style="padding: 1rem; text-align: center;">Lineal</td>
+                        <td style="padding: 1rem; text-align: center;">Lineal</td>
+                        <td style="padding: 1rem; text-align: center; color: var(--accent); font-weight: 600;">Circular</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border); background: #f8f9fa;">
+                        <td style="padding: 1rem; font-weight: 600;">Naturaleza</td>
+                        <td style="padding: 1rem; text-align: center;">Técnica/ electrónica</td>
+                        <td style="padding: 1rem; text-align: center;">Política/ propagandística</td>
+                        <td style="padding: 1rem; text-align: center;">Social/ grupal</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 1rem; font-weight: 600;">Receptor</td>
+                        <td style="padding: 1rem; text-align: center;">Pasivo (destino)</td>
+                        <td style="padding: 1rem; text-align: center;">Pasivo (audiencia)</td>
+                        <td style="padding: 1rem; text-align: center; color: var(--accent); font-weight: 600;">Activo (decodifica)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border); background: #f8f9fa;">
+                        <td style="padding: 1rem; font-weight: 600;">Feedback</td>
+                        <td style="padding: 1rem; text-align: center;">No</td>
+                        <td style="padding: 1rem; text-align: center;">No</td>
+                        <td style="padding: 1rem; text-align: center; color: var(--accent); font-weight: 600;">Sí</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 1rem; font-weight: 600;">Contexto</td>
+                        <td style="padding: 1rem; text-align: center;">Ignorado</td>
+                        <td style="padding: 1rem; text-align: center;">Parcial</td>
+                        <td style="padding: 1rem; text-align: center; color: var(--accent); font-weight: 600;">Considerado</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; font-weight: 600;">Elemento clave</td>
+                        <td style="padding: 1rem; text-align: center;">Ruido/ eficiencia</td>
+                        <td style="padding: 1rem; text-align: center;">Efecto/ control</td>
+                        <td style="padding: 1rem; text-align: center;">Interpretación/ grupo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="quote-block" style="margin-top: 3rem;">
+            <p>"La comunicación humana es un proceso biunívoco y de influencia mutua, situación no reflejada por el modelo de Shannon. A pesar de las críticas, por lo limitado del modelo al centrarse en el proceso de transmisión, es innegable su influencia en diversas teorías de la comunicación."</p>
+        </div>
+    </section>
+
+
+<!-- ===== MASS COMMUNICATION RESEARCH ===== -->
+    <section id="mcr" class="full-width">
+        <div class="section" style="max-width: 1100px; margin: 0 auto; padding: 0;">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">La Mass Communication Research</h2>
+                <p class="section-subtitle">La etapa de los efectos limitados (1950-1970)</p>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="theory-box">
+            <h4><span class="badge">Definición</span> Mass Communication Research</h4>
+            <p>Esta corriente reúne a un grupo de investigadores que tenían el objetivo común de conocer la influencia de los mass media sobre los individuos y la sociedad mediante el análisis empírico, ya que entendían que los fenómenos sociales debían ser estudiados como <span class="highlight">«hechos» susceptibles de observación y medición</span> de acuerdo a los postulados del método científico.</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3>Objetivos de Investigación</h3>
+                <ul>
+                    <li>Conocer las características específicas de los receptores</li>
+                    <li>Estudiar el desarrollo de mensajes apropiados para que lleguen al público y produzcan los efectos deseados</li>
+                    <li>Analizar de manera exhaustiva los efectos que se pretenden lograr</li>
+                    <li>Medir resultados para retroalimentar el proceso y mejorar las estrategias</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📉</div>
+                <h3>Conclusiones Fundamentales</h3>
+                <p>Los investigadores de la Mass Communication Research (MCR) comparten el interés por analizar y medir la influencia de la comunicación masiva (publicidad, propaganda bélica, campañas electorales) con los primeros aportes teóricos en este campo, pero los resultados obtenidos los llevan a conclusiones diferentes:</p>
+                <ul style="margin-top: 1rem;">
+                    <li>Se atenúa la idea del <span class="highlight">«poder total de los medios»</span> (omnipotencia mediática) acuñado por los primeros investigadores.</li>
+                    <li>Comienzan a visualizarse otros factores que influyen en las conductas de los individuos y que los medios masivos solo contribuyen a reforzar.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DOS ESCALONES ===== -->
+    <section id="dos-escalones" class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">👥</div>
+            <h2 class="section-title">La Teoría de los Dos Escalones (Two Step Flow)</h2>
+            <p class="section-subtitle">Paul Lazarsfeld y la relativización de la eficacia mediática</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">1940</span> Paul Félix Lazarsfeld (1901-1976)</h4>
+                    <p>El sociólogo vienés estudia los cambios en la intención del voto durante la campaña electoral para la segunda reelección de Franklin D. Roosevelt en 1940 en Erie County, Ohio, EEUU. La investigación dio lugar a <strong>«The People's Choice»</strong> (1944), libro en el que aparecen las conocidas teorías de los líderes de opinión y la teoría de los dos escalones o comunicación en dos etapas.</p>
+                </div>
+
+                <div class="theory-box" style="margin-top: 2rem;">
+                    <h4><span class="badge">Hipótesis</span> Tres Efectos de la Campaña</h4>
+                    <p>Lazarsfeld parte de la hipótesis de que las campañas electorales generan tres efectos que pueden presentarse con diferente intensidad:</p>
+                    <ul style="margin-top: 1rem;">
+                        <li><strong>Activación:</strong> los electores se ven movilizados por las elecciones.</li>
+                        <li><strong>Refuerzo:</strong> de las predisposiciones que estos ya tenían.</li>
+                        <li><strong>Conversión:</strong> de las preferencias políticas de un candidato.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Conclusiones de «The People's Choice»</h3>
+                    <p>Buscando medir los efectos de la propaganda en la intención de voto, el cambio de opinión y conocer el proceso de intención del voto, a partir del uso de la encuesta panel como recurso de investigación, se obtuvieron datos empíricos que demostraban que <span class="highlight">el principal efecto de la propaganda política era el refuerzo de las predisposiciones políticas latentes</span>. En síntesis, la campaña reforzó las preferencias previas de los votantes.</p>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-icon">💡</div>
+                    <h3>Descubrimientos Clave</h3>
+                    <ul>
+                        <li>El índice de influencia directa de una campaña, en cuanto al cambio de voto, fue <span class="highlight">mínimo</span>.</li>
+                        <li>El impacto básico de la campaña reforzó la decisión primitiva de algunos y activó las predisposiciones latentes de otros.</li>
+                        <li>Los medios no construyen opinión sino que <span class="highlight">refuerzan los sesgos preexistentes</span>, que se corresponden con las afiliaciones sociológicas (familia, escuela, religión, amigos).</li>
+                        <li>Existe un sesgo de selección en el consumo de medios en función de estas afiliaciones.</li>
+                        <li>Resultaron de vital importancia la <span class="highlight">influencia personal, los contactos cara a cara, y la discusión política</span>, más que la exposición en radio o prensa.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"La más vigorosa influencia descubierta fue el contacto cara a cara. Cada vez que se les pedía a los encuestados que informaran acerca de sus recientes exposiciones a comunicaciones de campaña de toda índole, las discusiones políticas eran mencionadas con mayor frecuencia que la exposición a la radio o a la prensa. En cualquier día medio, por lo menos un 10 por ciento más de personas participaban en discusiones acerca de las elecciones -ya fuese activa o pasivamente- en comparación con las que escuchaban un gran discurso o leían noticias sobre la campaña en los diarios."</p>
+            <cite>Paul F. Lazarsfeld, "The Election is Over" (1944)</cite>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Concepto Clave</span> La Figura del Líder de Opinión</h4>
+            <p>La familia es el grupo primario que moldea de manera más importante los intereses y las preferencias de los individuos en política. Los gremios, los partidos políticos y los mass media, instituciones sociales que se suponía tenían mucha influencia, tienen un alcance menor. Es por ello que se concluye que <span class="highlight">las comunicaciones de masas no son la única y suficiente causa para determinar la influencia de un discurso político determinado</span>, ya que, en todo caso, solo refuerzan tendencias políticas-ideológicas ya existentes.</p>
+        </div>
+
+        <div class="model-container">
+            <h3 style="font-family: 'Crimson Text', serif; color: var(--primary); margin-bottom: 2rem;">Modelo de los Dos Escalones vs. Modelo Inicial</h3>
+            <div class="two-col" style="gap: 2rem;">
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 2rem; border-radius: 12px;">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem; text-align: center;">Modelo Inicial (Aguja Hipodérmica)</h4>
+                    <div style="text-align: center;">
+                        <div style="background: var(--accent); color: #fff; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">Medios de Difusión</div>
+                        <div style="font-size: 2rem; color: var(--accent); margin: 0.5rem 0;">↓ ↓ ↓</div>
+                        <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                            <span style="width: 20px; height: 20px; background: var(--text-light); border-radius: 50%; display: inline-block;"></span>
+                            <span style="width: 20px; height: 20px; background: var(--text-light); border-radius: 50%; display: inline-block;"></span>
+                            <span style="width: 20px; height: 20px; background: var(--text-light); border-radius: 50%; display: inline-block;"></span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;">Individuos aislados que constituyen una masa</p>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 2rem; border-radius: 12px;">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem; text-align: center;">Modelo de los Dos Escalones</h4>
+                    <div style="text-align: center;">
+                        <div style="background: var(--accent); color: #fff; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">Medios de Difusión</div>
+                        <div style="font-size: 2rem; color: var(--accent); margin: 0.5rem 0;">↓ ↓ ↓</div>
+                        <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="text-align: center;">
+                                <div style="width: 40px; height: 40px; background: var(--gold); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: bold;">L</div>
+                                <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.3rem;">Líder</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 40px; height: 40px; background: var(--gold); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: bold;">L</div>
+                                <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.3rem;">Líder</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="width: 40px; height: 40px; background: var(--gold); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: bold;">L</div>
+                                <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.3rem;">Líder</p>
+                            </div>
+                        </div>
+                        <div style="font-size: 1.5rem; color: var(--gold); margin: 0.5rem 0;">↓ ↓ ↓</div>
+                        <div style="display: flex; justify-content: center; gap: 0.3rem; flex-wrap: wrap;">
+                            <span style="width: 15px; height: 15px; background: var(--text-light); border-radius: 50%;"></span>
+                            <span style="width: 15px; height: 15px; background: var(--text-light); border-radius: 50%;"></span>
+                            <span style="width: 15px; height: 15px; background: var(--text-light); border-radius: 50%;"></span>
+                            <span style="width: 15px; height: 15px; background: var(--text-light); border-radius: 50%;"></span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;">Individuos en contacto social con líderes de opinión</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🎓</div>
+                <h3>Características del Líder de Opinión</h3>
+                <p>Los líderes de opinión suelen tener un mayor contacto con los medios o un nivel de educación más alto, además de ejercer una influencia decisiva hacia el interior del grupo en cuestión; esto les permite hacer de filtro entre los medios de comunicación y los otros miembros del grupo. La efectividad de su reinterpretación se debe a varios factores:</p>
+                <ul style="margin-top: 1rem;">
+                    <li>Tienen una <span class="highlight">competencia reconocida</span> por el grupo.</li>
+                    <li>Son <span class="highlight">dignos de confianza</span>, al ser miembros del grupo y no representar ningún interés ajeno.</li>
+                    <li>En el contacto cara a cara, pueden <span class="highlight">adaptar su mensaje</span> a las características de cada destinatario.</li>
+                    <li>Pueden <span class="highlight">recompensar en forma personal e inmediata</span> a aquellos que coinciden con ellos.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3>«Personal Influence» (1955)</h3>
+                <p>En el libro conjunto de Lazarsfeld y Katz, <strong>Personal Influence</strong>, se utilizan muchos de los aportes de las obras citadas, entre ellas la Teoría de los dos escalones. Esta teoría aseguraba que el sistema comunicativo y la influencia de los medios se componían de dos fases diferentes:</p>
+                <ul style="margin-top: 1rem;">
+                    <li><strong>Primer paso:</strong> los medios lanzan un mensaje que recibe un tipo de persona en concreto: el llamado líder de opinión.</li>
+                    <li><strong>Segundo paso:</strong> esta figura filtra, analiza e interpreta esa información para después comunicarla a los demás mediante sus relaciones interpersonales.</li>
+                </ul>
+                <p style="margin-top: 1rem;">De ahí que se considere que <span class="highlight">la influencia de la comunicación interpersonal es uno de los fenómenos claves</span> para estudiar, en última instancia, la influencia de los mass media.</p>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Aporte</span> Joseph Klapper (1917-1984)</h4>
+            <p>Discípulo de Lazarsfeld, que trabaja sobre los efectos sociales de los medios de comunicación en las audiencias, tanto en la creación de opinión como en la conducta humana. En <strong>«The Effects of Mass Communication»</strong> (1960), afirma que no son exclusivamente los contenidos de los medios, sino los llamados <span class="highlight">factores intermedios</span>, los que determinan las actitudes y conductas:</p>
+            <ul style="margin-top: 1rem;">
+                <li><strong>Exposición selectiva:</strong> los individuos tienden a exponerse de forma selectiva a los medios de comunicación teniendo en cuenta las predisposiciones políticas que ya poseen.</li>
+                <li><strong>Grupos sociales:</strong> ejercen una gran influencia e introducen efectos directos sobre las percepciones, opiniones y actitudes de sus miembros.</li>
+                <li><strong>Comunicación interpersonal:</strong> crea una especie de segunda exposición selectiva.</li>
+                <li><strong>Líderes de opinión:</strong> el potencial de refuerzo de los medios se ve incrementado por su acción de filtro.</li>
+                <li><strong>Medios y sociedad de mercado:</strong> la libertad de mercado constituye un estímulo para el refuerzo de los valores dominantes.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== SCHRAMM ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">El Modelo de Wilbur Schramm</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">1954</span> Wilbur Schramm (1907-1987)</h4>
+            <p>El modelo que quizás ejemplifica mejor la impronta de la Mass Communication Research es el de Wilbur Schramm, publicado en su obra <strong>«Process and Effects of Mass Communication»</strong> (1954). Es en esta obra donde sistematiza en parte los aportes de Paul F. Lazarsfeld.</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🏢</div>
+                <h3>Los Mass Media como Sujetos Comunicadores</h3>
+                <p>Para Schramm, los mass media son sujetos comunicadores que, al igual que las personas, son <span class="highlight">decodificadores, intérpretes y codificadores</span>. Es decir, los media son receptores de eventos que codifican e interpretan de acuerdo con las lógicas productivas del periodismo.</p>
+                <p style="margin-top: 1rem;">Los insumos que reciben las organizaciones periodísticas son eventos provenientes de diferentes fuentes, e incluso el feedback de la propia audiencia. A continuación, se da forma al evento convirtiéndolo en noticia. Así, el comunicador codifica el mensaje que va a transmitir bajo las reglas del género correspondiente y a partir de las limitaciones técnicas del canal desde la cual se emite.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">✅</div>
+                <h3>Condiciones para el Éxito Comunicacional</h3>
+                <p>Schramm habla de condiciones para tener éxito en la comunicación del mensaje:</p>
+                <ul style="margin-top: 1rem;">
+                    <li>Debe formularse y entregarse de modo que <span class="highlight">obtenga la atención del destinatario</span>.</li>
+                    <li>Debe emplear signos que se refieran a la <span class="highlight">experiencia común de la fuente y el destinatario</span> para poder transmitir el significado.</li>
+                    <li>Debe despertar necesidades de la personalidad del destinatario y sugerir algunas maneras de satisfacer esas necesidades.</li>
+                    <li>Debe sugerir, para la satisfacción de tales necesidades, una manera que sea <span class="highlight">adecuada a la situación del grupo</span> en el que se encuentra el destinatario en el momento en que es impulsado a dar la respuesta deseada.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AGENDA SETTING ===== -->
+    <section id="agenda-setting" class="full-width">
+        <div class="section" style="max-width: 1100px; margin: 0 auto; padding: 0;">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">La Investigación Administrada y la Agenda Setting</h2>
+                <p class="section-subtitle">El regreso a la concepción de efectos fuertes (+1970)</p>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="theory-box">
+            <h4><span class="badge">Contexto</span> Investigación Administrada</h4>
+            <p>La sociología funcionalista se basa en la observación empírica de los efectos de los mass media (comportamiento, actitudes, emociones, cambios de conducta) con fines administrativos. Se habla de investigación administrada ya que la Mass Communication Research busca satisfacer las exigencias de quienes demandan y financian las investigaciones. Así, empresas y agencias de publicidad se interesan por la cantidad y las características de los receptores de los medios gráficos y programas audiovisuales para dar a conocer bienes y servicios. Mientras que en otro plano, desde distintas dependencias estatales se interesan por ajustar los mecanismos de persuasión para mantener la paz social en períodos de estabilidad y reforzar los valores patrióticos en contextos bélicos.</p>
+        </div>
+
+        <div class="quote-block">
+            <p>"Estas contradicciones no nacen únicamente de los enfoques metódicos, o aún teóricos, sino que muchas veces surgen de elementales marginaciones de sus temas de estudio y de sus formulaciones. Así aparecen, mejor sería decir desaparecen, una serie de temas de cuya importancia social no puede dudarse –la organización y estructura del poder comunicativo, por ejemplo-, que han merecido un escaso interés de los investigadores."</p>
+            <cite>Miguel de Moragas, Sociología de la comunicación de masas (1993)</cite>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Crítica</span> Lazarsfeld y Merton</h4>
+            <p>Lazarsfeld y Merton reconocen que los medios de comunicación difícilmente permitirán cambios sociales, ya que los temas sociales o políticos son abandonados por los media cuando chocan con los intereses económicos de sus auspiciantes. <span class="highlight">La presión económica promueve el conformismo</span> dejando de lado las cuestiones controvertidas. Las grandes firmas comerciales financian la producción y la distribución de los mass media, y, en general, quien paga la orquesta es también quien elige lo que ésta ha de tocar.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);">📰</div>
+            <h2 class="section-title">Agenda Setting: Primer Nivel</h2>
+            <p class="section-subtitle">Maxwell McCombs y Eugene F. Shaw</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">1970s</span> Nacimiento de la Teoría</h4>
+                    <p>La Teoría de la Agenda Setting Effects nació a comienzos de los '70 en Estados Unidos en el marco de un estudio realizado por <strong>Maxwell McCombs y Eugene F. Shaw</strong>. Fue la hipótesis de base de un estudio empírico acerca de la relación existente entre el contenido de la prensa y las opiniones de los ciudadanos sobre diversos temas de interés político en períodos preelectorales.</p>
+                    <p style="margin-top: 1rem;">Sus principales hipótesis contradicen las tesis de los efectos limitados de los mass media, preponderantes en esa época. La idea de que los media son capaces de influir en la opinión pública estableciendo un listado jerarquizado de asuntos importantes y una serie de atributos asociados a ellos recuperaba, para la tradición de los EEUU, la noción de los efectos de largo plazo.</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">💡</div>
+                    <h3>La Cita Fundacional</h3>
+                    <p>La prensa no tiene mucho éxito en decir a la gente <span class="highlight">qué tiene que pensar</span> pero sí lo tiene en decir a sus lectores <span class="highlight">sobre qué tienen que pensar</span>.</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);"><em>Bernard Cohen, The Press and Foreign Policy (1963)</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Si las primeras teorías de la década del 20 planteaban la idea de los efectos conductuales que se daban en el corto plazo, el trabajo de campo de McCombs y Shaw pudo demostrar empíricamente que la influencia de los medios se da en el plano cognoscitivo, no en el del comportamiento, y no es inmediata sino acumulativa, en plazos extendidos de tiempo."</p>
+            <cite>Maxwell McCombs, Estableciendo la agenda (2006)</cite>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🧠</div>
+                <h3>Hipótesis Fundamentales</h3>
+                <ul>
+                    <li>Los medios no le dicen a la gente <span class="highlight">cómo pensar</span>, sino sobre <span class="highlight">qué temas hacerlo</span>. Es decir, establecen el repertorio de los asuntos, los argumentos, los problemas sobre los que habla la opinión pública.</li>
+                    <li>Los medios establecen la <span class="highlight">jerarquía de importancia</span> en que son dispuestos los temas.</li>
+                    <li>Los medios retroalimentan esta jerarquización por su característica <span class="highlight">auto-referencial</span>: la radio cita los titulares de los diarios matutinos y realiza entrevistas buscando repercusiones, la televisión en el marco de los noticieros nocturnos ofrece una síntesis del día.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>Capacidad de Establecer la Agenda</h3>
+                <p>Según esta visión, los medios de comunicación al seleccionar los temas de interés construyen representaciones de la realidad. Pero de hecho no todos los medios tienen la misma capacidad para establecer la agenda. Es decir, el mero hecho de publicar una noticia no implica que esta se integrará a los temas de discusión del público.</p>
+                <p style="margin-top: 1rem;">La capacidad para instalar una agenda temática varía según:</p>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Los temas: hay temas más fáciles de instalar que otros.</li>
+                    <li>Las audiencias: las personas que tienen una experiencia directa sobre el tema en cuestión son menos influenciables.</li>
+                    <li>La relevancia política y social del tema.</li>
+                    <li>La credibilidad del medio, su impacto cuantitativo, sus fuentes de información y el contexto social.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Síntesis</span> El Poder de la Selección</h4>
+            <p>Podemos afirmar que la Agenda Setting propone que <span class="highlight">la gente incluye o excluye de sus conocimientos lo que los media también incluyen o excluyen en su contenido</span>, por lo cual podemos medir su capacidad de influencia no tanto por lo que muestra sino por lo que oculta o por la jerarquía que le otorga a los temas que considera relevantes.</p>
+        </div>
+    </section>
+
+    <!-- ===== SEGUNDO NIVEL ===== -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #c9a227 0%, #f0d78c 100%); color: var(--primary);">🔍</div>
+            <h2 class="section-title">El Segundo Nivel de la Agenda Setting</h2>
+            <p class="section-subtitle">De qué temas pensar a cómo pensarlos</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">Evolución</span> Del Primer al Segundo Nivel</h4>
+                    <p>El desarrollo teórico del primer nivel de la Agenda Setting se basó en la hipótesis de Bernard Cohen, que sostenía que los media eran una institución extremadamente influyente y podían influir en la audiencia sobre <span class="highlight">qué temas pensar</span>, aunque no tendrían mucho éxito al decirles <span class="highlight">cómo pensar</span> sobre esos temas.</p>
+                    <p style="margin-top: 1rem;">Los hallazgos empíricos de McCombs y Shaw aumentaron los alcances de esta primera premisa. Si en el primer nivel de estudio se enfocaba en la transmisión de la relevancia de los temas de agenda, <span class="highlight">el segundo nivel se refiere a la transmisión de la relevancia de los atributos asociados a los temas</span>.</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Atributos y Perspectivas</h3>
+                    <p>El segundo nivel de la Agenda Setting se basa en la idea de que los media seleccionan algunos aspectos de los objetos con los que construyen una representación de la realidad, construcción que, a su vez, influye en la percepción de la audiencia. De esta forma, la opinión pública pondera una perspectiva por encima de otras, encuentra ciertos factores como causantes de un asunto, desestima otros y se inclina hacia una solución de preferencia respecto a una cuestión o problema.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Cuando los medios de comunicación describen un acontecimiento, dan más importancia a ciertos atributos que a otros o mencionan algunos con más o menos frecuencia. En la transmisión de esos atributos, a partir de la jerarquización que hacen los media de los mismos, está la clave para medir su influencia en la agenda pública."</p>
+            <cite>Eugene Shaw, Agenda-Setting and Mass Communication Theory (1979)</cite>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Implicancia</span> ¿Qué temas quedan afuera?</h4>
+            <p>Otra manera de abordar las implicancias de esta teoría es considerar que <span class="highlight">lo importante no es la capacidad de fijar los temas de agenda, sino decidir qué temas quedan fuera</span>. Como consecuencia de la acción de los periódicos, de la televisión y de los demás medios de información, el público es consciente o ignora, presta atención o descuida, enfatiza o pasa por alto, elementos específicos de los escenarios públicos. La gente tiende a incluir o a excluir de sus propios conocimientos lo que los media incluyen o excluyen de su propio contenido. El público además tiende a asignar a lo que incluye una importancia que refleja el énfasis atribuido por los mass media a los acontecimientos, a los problemas, a las personas.</p>
+        </div>
+    </section>
+
+    <!-- ===== RESUMEN FUNCIONALISMO ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Resumen: Evolución del Funcionalismo</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">1920-1950</span>
+                    <h4>Etapa de los Medios Todopoderosos</h4>
+                    <p>La concepción dominante está marcada por el paradigma conductista: los medios ejercen una influencia directa, unívoca, determinante e inevitable sobre los individuos. <span class="highlight">Aguja Hipodérmica</span>.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">1950-1970</span>
+                    <h4>Etapa de los Efectos Limitados</h4>
+                    <p>Se produce un desplazamiento de la relevancia concedida al mensaje hacia otros elementos del proceso y hacia el proceso mismo en su conjunto. El foco está puesto en todo el proceso, desde la naturaleza y organización del medio hasta las condiciones de la recepción y la naturaleza de los públicos. <span class="highlight">Teoría de los dos escalones</span>.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">+1970</span>
+                    <h4>Regreso a la Concepción de Efectos Fuertes</h4>
+                    <p>A partir del auge significativo de los medios electrónicos, en especial de la televisión, tiene lugar un progresivo retorno a la concepción poderosa de los medios como fuentes de influencia sobre los públicos. <span class="highlight">Agenda Setting</span>.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== USOS Y GRATIFICACIONES ===== -->
+    <section id="usos-gratificaciones" class="full-width">
+        <div class="section" style="max-width: 1100px; margin: 0 auto; padding: 0;">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Teoría de los Usos y Gratificaciones</h2>
+                <p class="section-subtitle">Del "¿qué hacen los media a las personas?" al "¿qué hacen las personas con los media?"</p>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="theory-box">
+            <h4><span class="badge">Giro</span> El Enfoque en la Audiencia Activa</h4>
+            <p>Los primeros estudios acerca de la comunicación de masas, tanto los de la Mass Communication Research en su primera etapa como los de la Escuela de Frankfurt, tuvieron en común un modelo centrado en el polo de la emisión: el poder de los mensajes y de los dispositivos tecnológicos para imponer significados y conductas. A pesar de sus insalvables diferencias, en ambas corrientes subyace una lectura pasiva del papel que juegan las audiencias frente a los medios.</p>
+            <p style="margin-top: 1rem;">Con el desarrollo de los estudios sobre audiencias, los enfoques funcionalistas introducen un nuevo ámbito de análisis en el proceso comunicativo: <span class="highlight">las funciones de los medios desde la perspectiva de los usos sociales que los públicos hacen de ellos</span>.</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📻</div>
+                <h3>Orígenes (Años 40)</h3>
+                <p>Las primeras investigaciones científicas que dan pie a la Teoría de los Usos y Gratificaciones (TUG) las encontramos en los años cuarenta. Los resultados obtenidos daban cuenta de efectos significativos en el consumo diferencial de diarios o determinados tipos de programas de radio (por ejemplo, mujeres que usaban las radionovelas como referentes del rol que tenían que desempeñar en el hogar o como liberación emocional).</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📺</div>
+                <h3>Consolidación (Años 70)</h3>
+                <p>No obstante, es a partir de la década del 70 cuando esta teoría toma forma como tal. En 1974, Jay Blumler y Elihu Katz publicaron un artículo titulado «La investigación sobre usos y gratificaciones» en el que establecieron los principales lineamientos de la TUG.</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Principios Fundamentales</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">1️⃣</div>
+                <h3>Elección Racional</h3>
+                <p>La elección de los distintos medios y contenidos que hacen los individuos tiene un <span class="highlight">carácter racional y se encuentra dirigida hacia unos fines y satisfacciones específicos</span>.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">2️⃣</div>
+                <h3>Conciencia de Necesidades</h3>
+                <p>La audiencia es consciente de sus necesidades personales y sociales, y, por lo tanto, puede expresar estas necesidades en términos de motivaciones.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">3️⃣</div>
+                <h3>Utilidad Personal</h3>
+                <p>La utilidad personal se constituye como un factor más determinante para la audiencia que los factores estéticos o culturales; en último lugar, se piensa que la mayoría de los factores relevantes para la formación de las audiencias pueden, en principio, ser correctamente medidos (motivos, grados de satisfacción percibida, elección de medios, etc.).</p>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Nos enfrentamos, así, a un cambio en la óptica de los estudios de la comunicación: pasan de preguntarse qué hace el medio con el público para preguntarse qué hace el público con los medios."</p>
+            <cite>Denis McQuail, Communication (1975)</cite>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Evolución</span> De Funciones a Usos</h4>
+            <p>Mauro Wolf plantea que la TUG implica, en los enfoques funcionalistas, una clara evolución de la concepción de los usos como funciones al estudio de las funciones de los usos que los públicos hacen de los medios. Si la idea inicial de la comunicación como generadora de inmediata influencia en una relación estímulo/reacción es reemplazada por un estudio más atento de los contextos y de las interacciones sociales de los receptores, y que describe la eficacia de la comunicación como el resultado complejo de múltiples factores, a medida que la perspectiva funcionalista va enraizándose en las ciencias sociales los estudios sobre los efectos pasan de la pregunta <span class="highlight">«¿qué es lo que hacen los media a las personas?»</span> a la pregunta <span class="highlight">«¿qué hacen las personas con los media?»</span>.</p>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Categorías de Necesidades</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🎮</div>
+                <h3>1. Necesidades Evasivas</h3>
+                <p>El consumo mediático cumple la función de escape o diversión, de disminución de la ansiedad, relajación de tensiones, satisfacción de necesidades emocionales.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">❤️</div>
+                <h3>2. Necesidades Afectivas</h3>
+                <p>Ofrece experiencias de liberación emocional, de valor estético o placenteras a través de películas, canciones, novelas, etc.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">👫</div>
+                <h3>3. Necesidades Interpersonales</h3>
+                <p>Brinda compañía sustituta o son fuente de información útil en futuras interacciones sociales.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🧠</div>
+                <h3>4. Necesidades Cognitivas o de Vigilancia</h3>
+                <p>Es fuente de información, conocimientos útiles y comprensión respecto a lo que pasa en el mundo.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3>5. Necesidades de Integración</h3>
+                <p>Sostiene la pertenencia a grupos sociales de referencia a partir del consumo compartido (necesidades relacionadas con la autoestima, la pertenencia y el estatus).</p>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Síntesis</span> La Audiencia Activa</h4>
+            <p>Se habla de una <span class="highlight">audiencia activa y selectiva</span>, que orienta el uso de los medios de acuerdo con sus necesidades y para satisfacer objetivos puntuales que no tienen que ver solo con los contenidos, sino con el contexto sociocultural en el que se enmarca el uso de los medios. El receptor es también un iniciador, tanto en el sentido de dar origen a mensajes de retorno, como en el sentido de realizar procesos de interpretación con un cierto grado de autonomía. El receptor «actúa» sobre la información de la que dispone y la transforma.</p>
+            <p style="margin-top: 1rem;">La exposición ante los medios constituye, por tanto, un conjunto de alternativas funcionales para la satisfacción de las necesidades, lo que puede ser comparado, en principio, con la función de otras búsquedas de actividades recreativas. El enfoque postula que las gratificaciones pueden ser derivadas no solo del contenido de los medios, sino del propio acto de la exposición ante un medio dado así como el contexto social en el que ese medio es consumido.</p>
+        </div>
+    </section>
+
+    <!-- ===== ESCUELA DE FRANKFURT ===== -->
+    <section id="frankfurt" class="full-width">
+        <div class="section" style="max-width: 1100px; margin: 0 auto; padding: 0;">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">La Escuela de Frankfurt o Teoría Crítica</h2>
+                <p class="section-subtitle">Desenmascaramiento de ideologías y transformación del mundo</p>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="theory-box">
+            <h4><span class="badge">Contexto</span> Orígenes y Desarrollo</h4>
+            <p>Mientras en EEUU se desarrolla el funcionalismo y la sociología de la comunicación de masas, en Alemania, a partir de la década de los 20, un grupo de intelectuales discute sobre los mismos temas. Esta escuela de pensamiento, conocida como <span class="highlight">Escuela de Frankfurt o Escuela de la Teoría Crítica</span> reúne entre sus filas a: Walter Benjamin (1892-1940), Theodor W. Adorno (1903-1969), Max Horkheimer (1895-1973), Herbert Marcuse (1898-1979), Erich Fromm (1900-1980) y Jürgen Habermas (1929-).</p>
+        </div>
+
+        <div class="author-grid" style="margin-top: 3rem;">
+            <div class="author-card">
+                <h5>Max Horkheimer</h5>
+                <div class="years">(1895-1973)</div>
+                <p>Director del Instituto de Investigación Social. En "Teoría tradicional y teoría crítica" (1937) cuestionó la pretensión de neutralidad de la teoría tradicional.</p>
+            </div>
+            <div class="author-card">
+                <h5>Theodor W. Adorno</h5>
+                <div class="years">(1903-1969)</div>
+                <p>Filósofo y musicólogo. Desarrolló el concepto de "industria cultural" y criticó la cultura de masas como instrumento de dominación.</p>
+            </div>
+            <div class="author-card">
+                <h5>Walter Benjamin</h5>
+                <div class="years">(1892-1940)</div>
+                <p>Crítico literario y filósofo. Su obra "La obra de arte en la época de su reproducción técnica" (1936) es fundamental para entender el arte en la era mediática.</p>
+            </div>
+            <div class="author-card">
+                <h5>Herbert Marcuse</h5>
+                <div class="years">(1898-1979)</div>
+                <p>Filósofo político. En "El hombre unidimensional" (1964) analiza la sociedad industrial avanzada como sistema de represión.</p>
+            </div>
+            <div class="author-card">
+                <h5>Erich Fromm</h5>
+                <div class="years">(1900-1980)</div>
+                <p>Psicoanalista y filósofo social. Integró el psicoanálisis freudiano con el marxismo para analizar la alienación en la sociedad moderna.</p>
+            </div>
+            <div class="author-card">
+                <h5>Jürgen Habermas</h5>
+                <div class="years">(1929-)</div>
+                <p>Filósofo y sociólogo. Desarrolló la teoría de la acción comunicativa y el concepto de "esfera pública".</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <h2 class="section-title">Teoría Tradicional vs. Teoría Crítica</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="card">
+                    <div class="card-icon">📖</div>
+                    <h3>Teoría Tradicional</h3>
+                    <p>Intenta aportar una descripción abstracta del mundo, ajena a la realidad. Defiende el principio de no valoración y objetividad, presentando una fachada de neutralidad que en realidad esconde intereses ideológicos.</p>
+                </div>
+            </div>
+            <div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Teoría Crítica</h3>
+                    <p>Apunta al análisis, el desenmascaramiento de ideologías y la transformación del mundo. Busca la emancipación del ser humano que lo conduzca a la praxis liberadora. Todo conocimiento está determinado por las interacciones históricas, sociales y económicas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🎭</div>
+                <h3>Rasgos Generales</h3>
+                <ul>
+                    <li>Los filósofos de la teoría crítica defienden que <span class="highlight">no existe la imparcialidad</span>.</li>
+                    <li>No acata el principio de no valoración y objetividad, defendido anteriormente en la teoría tradicional.</li>
+                    <li>Todo conocimiento está determinado por las interacciones históricas, sociales y económicas.</li>
+                    <li>Una teoría no puede ser ajena al contexto social, histórico o económico del que ha surgido.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🏛️</div>
+                <h3>El Instituto de Investigación Social</h3>
+                <p>Fundado oficialmente el 23 de febrero de 1923 como el Instituto de Investigación Social (Institut für Sozialforschung), fue una institución cultural independiente aunque asociada a la Universidad de Frankfurt, cuyo objetivo inmediato era reflexionar sobre el fenómeno del progreso humano en un momento en que la ideología del progreso decepcionaba a la intelectualidad europea, sobre todo tras la crisis de valores en todos los ámbitos a raíz de la aplicación irracional de la ciencia y de la técnica en la Primera Guerra Mundial, que resultó en 40 millones de muertos.</p>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"La crítica cultural se encuentra frente al último escalón de la dialéctica de cultura y barbarie: luego de lo que pasó en el campo de Auschwitz es cosa bárbara escribir un poema, y este hecho corroe incluso el conocimiento que dice por qué se ha hecho hoy imposible escribir poesía. El espíritu crítico, si se queda en sí mismo, en autosatisfecha contemplación, no es capaz de enfrentarse con la absoluta cosificación que tuvo entre sus presupuestos el progreso del espíritu, pero hoy se dispone a desangrarlo."</p>
+            <cite>Theodor W. Adorno, Prismas (1962)</cite>
+        </div>
+    </section>
+
+    <!-- ===== INFLUENCIAS ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Influencias Teóricas: Marx y Freud</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">Marxismo</span> Karl Marx (1818-1883)</h4>
+                    <p>La Escuela de Frankfurt asume los postulados de Karl Marx, pero relativizando su impronta economicista. Plantean, por ejemplo, que <span class="highlight">los fenómenos culturales son tan decisivos como los económicos en la reproducción de las desigualdades sociales y las formas contemporáneas de alienación y sometimiento</span>.</p>
+                </div>
+
+                <div class="quote-block" style="margin-top: 2rem;">
+                    <p>"La alienación del trabajador se expresa así: cuanto más produce, menos puede consumir; cuanto más valor crea, menos valor tiene... El trabajo genera cosas fabulosas para los ricos, pero miseria para los pobres. Las máquinas reemplazan al trabajo y los empleos disminuyen, al par que otros trabajadores se vuelven máquinas."</p>
+                    <cite>Karl Marx, Manuscritos económico-filosóficos de 1844</cite>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">🔗</div>
+                    <h3>El Concepto de Alienación</h3>
+                    <p>Marx estudia la alienación y la define como el proceso por el cual el trabajador pierde una parte de sí durante el proceso de producción (trabajo alienado).</p>
+                    <p style="margin-top: 1rem;">Es evidente que cuanto más se vuelca el trabajador en su trabajo, tanto más poderoso es el mundo extraño, objetivo que crea frente a sí y tanto más pobres son él mismo y su mundo interior, tanto menos dueño de sí mismo es. Lo mismo sucede en la religión, cuanto más pone el hombre en Dios, tanto menos guarda en sí mismo. El trabajador pone su vida en el objeto pero a partir de entonces ya no le pertenece a él, sino al objeto.</p>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-icon">🧠</div>
+                    <h3>Freud y el Psicoanálisis</h3>
+                    <p>Los frankfurtianos también apelan al psicoanálisis freudiano para explicar el modo en que se interiorizan estos mecanismos en cada sujeto y sostienen que <span class="highlight">el auge del cine y la radio son mecanismos ideológicos primordiales para mantener la dominación social y la explotación en la fábrica</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Concepto</span> Alienación Subjetiva</h4>
+            <p>La alienación también se da en el nivel de la subjetividad: cuando alguien pierde la conciencia, deja de pensar por sus propios medios y adopta ideas o pensamientos contrarios a sus propios intereses. La alienación se revela también en que el individuo de la sociedad capitalista carece de una personalidad integrada: su personalidad es más bien una serie de máscaras. El individuo es una persona cuando trata en su trabajo a sus superiores, y otra cuando trata a los que están debajo de él; es una persona cuando está en la peluquería y otra cuando está en una reunión social; el individuo es un amante padre de familia de la noche a la mañana y un perfecto burgués de 8 de la mañana a 8 de la noche.</p>
+            <p style="margin-top: 1rem;"><em>— Milciades Peña, Introducción al pensamiento de Marx</em></p>
+        </div>
+    </section>
+
+    <!-- ===== MATERIALISMO HISTÓRICO ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Materialismo Histórico y Modos de Producción</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Doctrina Económica</h3>
+                <p>Donde se desarrollan los conceptos de relaciones de producción, modos y medios de producción, estructura económica (estructura material y superestructura), fetichismo, alienación, plusvalía, etc.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📜</div>
+                <h3>Materialismo Histórico</h3>
+                <p>Que elabora una historia del hombre a partir de ver cómo se distribuyen los bienes materiales en cada estadio histórico e intenta demostrar que la historia la hace el hombre, no es el destino ni la denominada "mano de Dios".</p>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Etapas</span> Sucesión de Modos de Producción</h4>
+            <p>A partir de una visión esquemática de la concepción materialista de la historia podemos afirmar que todas las sociedades humanas han pasado por determinados modos de producción en la siguiente sucesión cronológica:</p>
+            <ul style="margin-top: 1rem;">
+                <li><strong>Comunismo primitivo:</strong> donde la propiedad de los medios de producción y de los productos producidos era comunitaria.</li>
+                <li><strong>Esclavismo:</strong> el trabajo libre da paso al esclavismo, la tierra es parcelada y entregada a siervos que la trabajan y por la que tienen que realizar un pago en especie.</li>
+                <li><strong>Feudalismo:</strong> cuando aparece la clase burguesa, una minoría de la misma se apropia de los medios de producción y explota a la clase trabajadora.</li>
+                <li><strong>Capitalismo:</strong> el modo de producción dominante en una sociedad es el que determina su modo de comunicación (práctica que está en la superestructura).</li>
+                <li><strong>Socialismo:</strong> vuelve a instaurar la propiedad común de los medios de producción, devuelve los productos a los productores y elimina la explotación de la clase trabajadora.</li>
+            </ul>
+        </div>
+
+        <div class="quote-block">
+            <p>"El modo de producción de la vida material condiciona el proceso de vida social, político y espiritual en general. No es la conciencia de los hombres la que determina su ser, sino, por el contrario, el ser social es lo que determina su conciencia. En cierta fase de su desarrollo, las fuerzas productivas materiales de la sociedad entran en contradicción con las relaciones de producción existentes, o bien, lo que no es más que la expresión jurídica de esto, con las relaciones de propiedad en el seno de las cuales se han desenvuelto hasta entonces."</p>
+            <cite>Karl Marx, Contribución a la crítica de la economía política (1859)</cite>
+        </div>
+    </section>
+
+    <!-- ===== INDUSTRIA CULTURAL ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Industria Cultural y Manipulación</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🏭</div>
+                <h3>La Noticia como Mercancía</h3>
+                <p>Uno de los principales aportes que realiza la crítica frankfurtiana es el de representar a las noticias como <span class="highlight">mercancías dentro de la lógica del sistema capitalista</span>: son producidas como tales y vendidas en un mercado donde la competencia es otro factor importante a tener en cuenta.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📢</div>
+                <h3>Publicidad y Dependencia Económica</h3>
+                <p>La publicidad será otro tópico importante, ya que los medios no solo se transforman en la plataforma de exposición por excelencia del capital industrial y comercial, sino que la dependencia económica que se establece a partir de este hecho condiciona el contenido informativo.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎪</div>
+                <h3>Sensacionalismo y Negación del Trabajo</h3>
+                <p>Para los mass media solo sean interesantes las informaciones que puedan ser un fondo adecuado para los anuncios comerciales. Por un lado noticias agradables, que nunca pongan en discusión los pilares del sistema, y por el otro, el contenido sensacionalista que traslada los dramas particulares a la dimensión pública, desconociendo los hechos que realmente reclaman la participación de la sociedad.</p>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Concepto</span> Fetichismo de la Mercancía</h4>
+            <p>Los antropólogos emplean el término fetichismo para referirse a la creencia del hombre primitivo de que objetos físicos, inanimados, pueden encerrar poderes espirituales. En la economía política de Marx, el fetichismo se refiere a la creencia de la gente de que <span class="highlight">el valor de las cosas es algo inherente en ellas mismas, cuando en realidad es producto de determinadas relaciones sociales de producción</span>.</p>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Definición</span> Manipulación</h4>
+            <p>En términos generales se aplica a la acción de forzar o modificar ideas, interpretaciones o conductas mediante una influencia sistemática basada en una situación de poder asimétrica. Etimológicamente el término manipulación viene a significar una consciente intervención técnica de un material dado. Si esta intervención es de una importancia social inmediata, la manipulación constituye un acto político. Este es el caso de la industria de la conciencia. Así pues, toda utilización de los medios presupone una manipulación. Los más elementales procesos de la manipulación, desde la elección del medio mismo, pasando por la grabación, el corte, la sincronización y la mezcla, hasta llegar a la distribución, no son más que intervenciones en el material existente. Por lo tanto, el escribir, filmar o emitir sin manipulación no existe. En consecuencia, la cuestión no es si los medios son manipuladores o no, sino <span class="highlight">quién manipula los medios</span>. De lo cual se deduce que un proyecto revolucionario no debe eliminar a todos los manipuladores, sino que, por el contrario, ha de lograr que cada uno sea un manipulador.</p>
+            <p style="margin-top: 1rem;"><em>— Hans Magnus Enzensberger, Elementos para una teoría de los medios de comunicación (1971)</em></p>
+        </div>
+
+        <div class="quote-block">
+            <p>"La posibilidad que tienen los receptores de participar en diarios, revistas, la radio y la televisión es mínima, por no decir nula. Lo que se conoce como libertad de expresión se entiende, en el marco de las sociedades capitalistas, en la posibilidad de elegir entre las opciones que ofrecen dos o tres productores de información, en una clara situación de oligopolio."</p>
+        </div>
+    </section>
+
+    <!-- ===== WALTER BENJAMIN ===== -->
+    <section id="benjamin" class="full-width">
+        <div class="section" style="max-width: 1100px; margin: 0 auto; padding: 0;">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2 class="section-title">Walter Benjamin: Un Ángel contra el Mito del Progreso</h2>
+                <p class="section-subtitle">La obra de arte en la era de su reproducción técnica</p>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="theory-box">
+            <h4><span class="badge">1936</span> La Obra de Arte en la Era de su Reproducción Técnica</h4>
+            <p>En el artículo «La obra de arte en la era de su reproducción técnica» (1936), de Walter Benjamin, se desarrolla la relación entre la situación del arte, la cultura y la política en una época de tecnologías emergentes y de consolidación de los mass media. Para Benjamin, <span class="highlight">la obra de arte reproducida técnicamente desplaza a la concepción del arte basada en su valor cultural</span>.</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">✨</div>
+                <h3>El Concepto de Aura</h3>
+                <p>En la cultura clásica, el valor cultural de la obra de arte está vinculado a su carácter único e irrepetible, y esto es lo que la hace auténtica. Esta obra expresaba cierta lejanía o distancia entre el productor y el público, entre la representación y lo representado. Benjamin denomina <span class="highlight">aura</span> a esta lejanía: es el aquí y ahora, que en la originalidad de la obra expresa el misterio, la conmoción o la angustia del creador en el proceso de creación.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎬</div>
+                <h3>El Cine como Revolución Perceptiva</h3>
+                <p>El despertar intelectual de Benjamin coincide con el nacimiento y el auge del cine. Según su teoría, el desarrollo de las tecnologías de comunicación y la reproducción técnica de la obra de arte producen ciertos cambios en la percepción del arte. En el teatro la dramatización es única. Cada actuación es irrepetible mientras que en el cine la actuación se puede repetir tantas veces como sea necesario. Se puede probar, montar desde diferentes tomas y luego exhibirla infinidad de veces.</p>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Resumiendo todas estas deficiencias en el concepto de aura, podremos decir: en la época de la reproducción técnica de la obra de arte lo que se atrofia es el aura de esta. El proceso es sintomático; su significación señala por encima del ámbito artístico. Conforme a una formulación general: la técnica reproductiva desvincula lo reproducido del ámbito de la tradición. Al multiplicar las reproducciones pone su presencia masiva en el lugar de una presencia irrepetible. Y confiere actualidad a lo reproducido al permitirle salir, desde su situación respectiva, al encuentro de cada destinatario. Ambos procesos conducen a una fuerte conmoción de lo transmitido, a una conmoción de la tradición, que es el reverso de la actual crisis y de la renovación de la humanidad. Están además en estrecha relación con los movimientos de masas de nuestros días. Su agente más poderoso es el cine."</p>
+            <cite>Walter Benjamin, La obra de arte en la época de su reproducción técnica (1936)</cite>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">Análisis</span> Pintura vs. Cine</h4>
+                    <p>La pintura, como todo arte tradicional, invita a la contemplación y a la recepción distante y atenta. En cambio el cine promueve una <span class="highlight">recepción dispersa, menos distante, capaz de acercarle imaginariamente al hombre los objetos del mundo y hacerlos familiares, manipulables</span>. Apenas se registra con los ojos un plano y este ha cambiado. En ese choque perceptivo está la capacidad de movilización del cine para llegar a las motivaciones profundas de la masa.</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">⚠️</div>
+                    <h3>El Potencial Destructivo</h3>
+                    <p>Benjamin intuye que el cine es un instrumento capaz de movilizar las fantasías inconscientes de las masas, a través de la manipulación de las imágenes. Según él, <span class="highlight">el fascismo y el nazismo emplean en sus actos y publicidades recursos estéticos y cinematográficos</span>. Sus actos políticos, grandes rituales masivos, convocan a las masas.</p>
+                    <p style="margin-top: 1rem;">En la producción artística, al fracasar la norma de la autenticidad se transforma la función del arte. Con la reproducción técnica, la obra pierde su valor cultural, su capacidad crítica, su aura, pero adquiere valor exhibitorio, es decir se multiplica su capacidad de exhibición: en lugar de basarse en un ritual, su razón de ser podría encontrarse en una práctica diferente: <span class="highlight">la manipulación por parte del poder y su uso político por parte del aparato estatal</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">Advertencia</span> La Liquidación del Valor de la Tradición</h4>
+            <p>Así es como Benjamin vislumbra las posibilidades liberadoras de la técnica y la cultura de masas, pero también es pionero en intuir su potencial destructivo. Los usos y costumbres del fascismo y el nacional socialismo alemán terminarían confirmando sus peores augurios. El arte, último reducto de la criticidad del ser humano, se va transformando a lo largo del siglo XX, y no solo por la posibilidad de la reproducción técnica de la obra, sino también por ser absorbido por el mercado. Las variables comerciales de la oferta y la demanda, o el gusto del público y las tendencias de moda, coartan las posibilidades expresivas del artista al imponerle temas y técnicas que le aseguren presencia en el mercado, y por ende, posibilidades de éxito.</p>
+        </div>
+    </section>
+
+    <!-- ===== INVESTIGACIÓN ADMINISTRADA ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Adorno y la Investigación Administrada</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="theory-box">
+                    <h4><span class="badge">Crítica</span> El Conflicto con Lazarsfeld</h4>
+                    <p>Instalado en EEUU, Adorno colabora con el sociólogo funcionalista Paul Lazarsfeld en un proyecto de investigación sobre programas de radio. El objetivo es revitalizar la investigación administrada con la tradición crítica. La investigación administrada, constata Adorno, está contaminada por los intereses que la financian:</p>
+                    <ul style="margin-top: 1rem;">
+                        <li>Los accionistas de una radio van a querer saber cuánta gente escucha sus programas y qué es lo que les gusta. Además, los anunciantes querrán saber cuántos son los oyentes y a qué grupo social pertenecen.</li>
+                        <li>Las fuerzas de seguridad mandarán a investigar la forma de persuadir a la gente para que no genere disturbios.</li>
+                        <li>Los políticos necesitan saber la eficacia de una campaña electoral.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>El Objetivo de la MCR</h3>
+                    <p>El objetivo de la Mass Communication Research es satisfacer las exigencias de quienes demandan y financian las investigaciones. La experiencia termina muy pronto: la confrontación entre las dos tradiciones de investigación se hace insostenible.</p>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-icon">🔒</div>
+                    <h3>La Crítica a la Rockefeller Foundation</h3>
+                    <p>Adorno cuestiona la entidad financiadora del proyecto, la Rockefeller Foundation, que a su vez es quien estipula expresamente que las investigaciones deben cumplirse en el marco del sistema de radio comercial. <span class="highlight">Todo puede ser objeto de análisis, menos una cosa: el sistema mismo, sus supuestos sociales, económicos y sus consecuencias</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"En síntesis, los integrantes de la Escuela de Frankfurt pretenden desarrollar una sociedad de individuos libres, conscientes y de espíritu crítico. En esa búsqueda, describen y denuncian toda forma de opresión vigente en las sociedades modernas, ya sean capitalistas o versiones socialistas autoritarias de la revolución."</p>
+        </div>
+    </section>
+
+    <!-- ===== MANIFIESTO COMUNISTA ===== -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">El Manifiesto Comunista</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="theory-box">
+            <h4><span class="badge">1848</span> Marx y Engels</h4>
+            <p>El Manifiesto Comunista es considerado como una pieza clave para comprender el pensamiento marxista. Publicado en 1848, expone las bases del pensamiento de Karl Marx y Friedrich Engels en términos de teoría política, económica y social. En él, la historia se contempla como una <span class="highlight">lucha constante entre clases, entre opresores y oprimidos</span>, una lucha que siempre ha resultado en la transformación revolucionaria de la sociedad. El objetivo del Manifiesto era proclamar la próxima desaparición de la propiedad burguesa y el triunfo de la revolución proletaria y comunista.</p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <h3>Teorías de la Comunicación</h3>
+        <p>Este documento integra de manera cohesiva todos los conceptos, teorías, modelos y pensadores fundamentales del estudio de la comunicación de masas, desde los fundamentos filosóficos hasta las críticas más contemporáneas, manteniendo la integridad y profundidad del contenido original.</p>
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5);">
+                Documento generado a partir del material académico original | 
+                <span class="concept-tag" style="background: rgba(255,255,255,0.2); color: #fff;">Funcionalismo</span>
+                <span class="concept-tag" style="background: rgba(255,255,255,0.2); color: #fff;">Escuela de Frankfurt</span>
+                <span class="concept-tag" style="background: rgba(255,255,255,0.2); color: #fff;">Agenda Setting</span>
+                <span class="concept-tag" style="background: rgba(255,255,255,0.2); color: #fff;">Usos y Gratificaciones</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scroll - works on all browsers
+        document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                var target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    var offset = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Active nav highlighting on scroll
+        var sections = document.querySelectorAll('section[id]');
+        var navItems = document.querySelectorAll('.nav-item');
+
+        function updateActiveNav() {
+            var scrollPos = window.pageYOffset + 100;
+            var current = '';
+            sections.forEach(function(section) {
+                if (section.offsetTop <= scrollPos) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navItems.forEach(function(item) {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+    </script>
+    <script>
+        // Smooth scroll for navigation - FIXED to work with all links
+        document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                var target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    var offset = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        var sections = document.querySelectorAll('section[id]');
+        var navItems = document.querySelectorAll('.nav-item');
+
+        function updateActiveNav() {
+            var scrollPos = window.pageYOffset + 100;
+            var current = '';
+            sections.forEach(function(section) {
+                if (section.offsetTop <= scrollPos) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navItems.forEach(function(item) {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+
+        // Intersection Observer for entrance animations - RESTORED
+        var observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .theory-box, .quote-block, .timeline-item').forEach(function(el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
